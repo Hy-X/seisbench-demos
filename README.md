@@ -8,6 +8,8 @@ This repository provides a hands-on tutorial for **SeisBench**, a Python library
 seisbench-tutorial/
 ├── README.md
 ├── requirements.txt
+├── data/
+│   └── 01_basic_dataset.hdf5
 ├── notebooks/
 │   └── 01_basic_usage.ipynb
 └── scripts/
