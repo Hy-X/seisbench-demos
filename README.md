@@ -1,11 +1,14 @@
 # SeisBench Tutorial
 
-[![Python](https://img.shields.io/badge/Python-3.12-blue)](https://www.python.org/)
-[![SeisBench](https://img.shields.io/badge/SeisBench-Tutorial-green)](https://seisbench.readthedocs.io/)
-[![License](https://img.shields.io/badge/License-GPL-yellow)](https://opensource.org/licenses/GPL-3-0)
-[![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange)](https://jupyter.org/)
-[![Awesome](https://img.shields.io/badge/Awesome-Yes-brightgreen.svg)](#)
-[![Build Passing](https://img.shields.io/badge/Build-Passing-brightgreen.svg)](#)
+[![seisbench v0.7.0](https://img.shields.io/badge/seisbench-0.7.0-blue.svg)](https://pypi.org/project/seisbench/0.7.0)
+[![Python 3.12](https://img.shields.io/badge/python-3.12-blue?logo=python)](https://www.python.org/downloads/release/python-3120/)
+[![Documentation Status](https://img.shields.io/readthedocs/seisbench?logo=read-the-docs)](https://seisbench.readthedocs.io/)
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://opensource.org/licenses/GPL-3.0)
+[![Jupyter Notebook](https://img.shields.io/badge/Jupyter-Notebook-orange?logo=jupyter)](https://jupyter.org/)
+[![CI](https://img.shields.io/github/actions/workflow/status/Hy-X/seisbench-demos/ci.yml?branch=main&label=CI&logo=github)](https://github.com/Hy-X/seisbench-demos/actions)
+[![Coverage](https://img.shields.io/codecov/c/github/Hy-X/seisbench-demos?logo=codecov)](https://codecov.io/gh/Hy-X/seisbench-demos)
+[![Downloads](https://img.shields.io/github/downloads/Hy-X/seisbench-demos/total?logo=github)](https://github.com/Hy-X/seisbench-demos/releases)
+[![Stars](https://img.shields.io/github/stars/Hy-X/seisbench-demos?style=social)](https://github.com/Hy-X/seisbench-demos/stargazers)
 
 
 
@@ -14,31 +17,33 @@ This repository provides a hands-on tutorial for **SeisBench**, a Python library
 ## Repository Structure
 
 ```
-seisbench-tutorial/
+seisbench-demos/
+├── LICENSE
 ├── README.md
-├── requirements.txt
 ├── data/
 │   └── 01_basic_dataset.hdf5
+├── figures/
 ├── notebooks/
 │   └── 01_basic_usage.ipynb
 └── scripts/
-    └── 01_basic_loader.py
+    └── 01_basic_usage.py
 ```
 
-- **notebooks/**: Jupyter notebooks demonstrating SeisBench usage interactively.  
-- **scripts/**: Python scripts for running SeisBench workflows programmatically.  
-- **requirements.txt**: Python dependencies needed to run the tutorials.
+- **LICENSE**: Project license file.
+- **notebooks/**: Jupyter notebooks demonstrating SeisBench usage interactively.
+- **scripts/**: Python scripts for running SeisBench workflows programmatically (example: `01_basic_usage.py`).
+- **requirements.txt**: (optional) Python dependencies needed to run the tutorials.
 
 ## Setup
 
 1. **Clone the repository:**
 
 ```bash
-git clone https://github.com/Hy-X/seisbench-tutorial.git
-cd seisbench-tutorial
+git clone https://github.com/Hy-X/seisbench-demos.git
+cd seisbench-demos
 ```
 
-2. **Create a virtual environment (recommended):**
+2. **Create a Python 3.12 virtual environment (recommended):**
 
 ```bash
 python -m venv venv
@@ -70,7 +75,7 @@ jupyter notebook notebooks/01_basic_usage.ipynb
 Run the example script:
 
 ```bash
-python scripts/01_basic_loader.py
+python scripts/01_basic_usage.py
 ```
 
 ## Contributing
