@@ -1,8 +1,8 @@
 # SeisBench Tutorial
 
-[![Python](https://img.shields.io/badge/Python-3.11-blue)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/Python-3.12-blue)](https://www.python.org/)
 [![SeisBench](https://img.shields.io/badge/SeisBench-Tutorial-green)](https://seisbench.readthedocs.io/)
-[![License](https://img.shields.io/badge/License-MIT-yellow)](https://opensource.org/licenses/MIT)
+[![License](https://img.shields.io/badge/License-GPL-yellow)](https://opensource.org/licenses/GPL)
 [![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange)](https://jupyter.org/)
 
 This repository provides a hands-on tutorial for **SeisBench**, a Python library for working with seismic datasets and machine learning models for seismology. It includes example scripts and Jupyter notebooks to get you started quickly.
