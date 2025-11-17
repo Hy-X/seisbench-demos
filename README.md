@@ -40,13 +40,28 @@ git clone https://github.com/Hy-X/seisbench-demos.git
 cd seisbench-demos
 ```
 
-2. **Create a Python 3.12 virtual environment (recommended):**
+2. **Create a Conda environment with Python 3.12 (recommended):**
 
 ```bash
-python -m venv venv
-# Activate:
-# Windows: venv\Scripts\activate
-# Mac/Linux: source venv/bin/activate
+# Create the environment (name it `seisbench-env` or choose your own)
+conda create -n seisbench-env python=3.12 -y
+# Activate the environment
+conda activate seisbench-env
+```
+
+After activating the Conda environment, install the project dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+If you plan to use GPU-accelerated PyTorch, prefer the Conda installation instructions from the PyTorch website (select the correct CUDA version), for example:
+
+```bash
+# Example (CPU-only):
+conda install pytorch cpuonly -c pytorch -y
+# Example (CUDA):
+# conda install pytorch cudatoolkit=12.1 -c pytorch -y
 ```
 
 3. **Install dependencies:**
