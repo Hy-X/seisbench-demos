@@ -5,9 +5,6 @@
 [![Documentation Status](https://img.shields.io/readthedocs/seisbench?logo=read-the-docs)](https://seisbench.readthedocs.io/)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://opensource.org/licenses/GPL-3.0)
 [![Jupyter Notebook](https://img.shields.io/badge/Jupyter-Notebook-orange?logo=jupyter)](https://jupyter.org/)
-[![CI](https://img.shields.io/github/actions/workflow/status/Hy-X/seisbench-demos/ci.yml?branch=main&label=CI&logo=github)](https://github.com/Hy-X/seisbench-demos/actions)
-[![Coverage](https://img.shields.io/codecov/c/github/Hy-X/seisbench-demos?logo=codecov)](https://codecov.io/gh/Hy-X/seisbench-demos)
-[![Downloads](https://img.shields.io/github/downloads/Hy-X/seisbench-demos/total?logo=github)](https://github.com/Hy-X/seisbench-demos/releases)
 [![Stars](https://img.shields.io/github/stars/Hy-X/seisbench-demos?style=social)](https://github.com/Hy-X/seisbench-demos/stargazers)
 
 
