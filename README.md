@@ -4,10 +4,6 @@
 [![SeisBench](https://img.shields.io/badge/SeisBench-Tutorial-green)](https://seisbench.readthedocs.io/)
 [![License](https://img.shields.io/badge/License-GPL-yellow)](https://opensource.org/licenses/GPL-3-0)
 [![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange)](https://jupyter.org/)
-[![Stars](https://img.shields.io/github/stars/Hy-X/seisbench-tutorial?style=social)](https://github.com/Hy-X/seisbench-tutorial/stargazers)
-[![Forks](https://img.shields.io/github/forks/Hy-X/seisbench-tutorial?style=social)](https://github.com/Hy-X/seisbench-tutorial/network/members)
-[![Issues](https://img.shields.io/github/issues/Hy-X/seisbench-tutorial)](https://github.com/Hy-X/seisbench-tutorial/issues)
-[![Contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-brightgreen.svg)](https://github.com/Hy-X/seisbench-tutorial/issues)
 [![Awesome](https://img.shields.io/badge/Awesome-Yes-brightgreen.svg)](#)
 [![Build Passing](https://img.shields.io/badge/Build-Passing-brightgreen.svg)](#)
 
