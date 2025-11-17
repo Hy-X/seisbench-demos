@@ -1,4 +1,4 @@
-# SeisBench Tutorial
+# OKLAD (Oklahoma labeled AI dataset) and SeisBench Tutorial
 
 [![seisbench v0.7.0](https://img.shields.io/badge/seisbench-0.7.0-blue.svg)](https://pypi.org/project/seisbench/0.7.0)
 [![Python 3.12](https://img.shields.io/badge/python-3.12-blue?logo=python)](https://www.python.org/downloads/release/python-3120/)
