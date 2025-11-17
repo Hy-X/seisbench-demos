@@ -8,16 +8,15 @@ This repository provides a hands-on tutorial for **SeisBench**, a Python library
 
 ## Repository Structure
 
-seisbench-tutorial/\n
-│\n
-├── README.md\n
-├── requirements.txt\n
-├── notebooks/\n
-│ └── 01_basic_usage.ipynb\n
-│\n
-└── scripts/\n
-└── basic_loader.py\n
-
+seisbench-tutorial/
+│
+├── README.md
+├── requirements.txt
+├── notebooks/
+│   └── 01_basic_usage.ipynb
+│
+└── scripts/
+    └── basic_loader.py
 
 - **notebooks/**: Jupyter notebooks demonstrating SeisBench usage in an interactive environment.  
 - **scripts/**: Python scripts for running SeisBench workflows programmatically.  
