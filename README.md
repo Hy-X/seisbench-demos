@@ -42,7 +42,7 @@ seisbench-demos/
 
 ## OKALD Glipmse and Statistics
 
-![Historical Oklad Seismicty](./figures/Okla_historical_seismicity.png)
+![Historical Oklad Seismicty](./figures/Okla_Historical_Seismicity_StreamGraph.png)
 
 ![Seismicty and Station Map](./figures/OK_Station_and_Event_Map_3.png)
 
