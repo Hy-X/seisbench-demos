@@ -44,6 +44,8 @@ seisbench-demos/
 
 ![Historical Seismicty](./figures/okla_historical_seismicity.png)
 
+![Seismicty and Station Map](./figures/OK_Station_and_Event_Map_3.png)
+
 ![P and S pick statistics](./figures/OKLAD_P_S_pick_statistics.png)
 
 ## Setup
