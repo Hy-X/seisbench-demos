@@ -1,3 +1,5 @@
+![OKALD logo](./figures/OKLAD_logo.png)
+
 # OKLAD (Oklahoma labeled AI dataset) and SeisBench Tutorial
 
 [![seisbench v0.7.0](https://img.shields.io/badge/seisbench-0.7.0-blue.svg)](https://pypi.org/project/seisbench/0.7.0)
