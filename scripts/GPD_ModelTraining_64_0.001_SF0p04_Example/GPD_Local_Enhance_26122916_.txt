@@ -1,0 +1,60 @@
+
+Example 1:
+True Classification: Noise
+Predicted Classification: Noise
+True Label Probabilities:
+  P-Phase: 0.0000
+  S-Phase: 0.0000
+  Noise: 1.0000
+Predicted Label Probabilities:
+  P-Phase: 0.0000
+  S-Phase: 0.0000
+  Noise: 1.0000
+
+Example 2:
+True Classification: S-Phase
+Predicted Classification: S-Phase
+True Label Probabilities:
+  P-Phase: 0.0000
+  S-Phase: 0.9950
+  Noise: 0.0050
+Predicted Label Probabilities:
+  P-Phase: 0.0000
+  S-Phase: 1.0000
+  Noise: 0.0000
+
+Example 3:
+True Classification: S-Phase
+Predicted Classification: S-Phase
+True Label Probabilities:
+  P-Phase: 0.0000
+  S-Phase: 0.9950
+  Noise: 0.0050
+Predicted Label Probabilities:
+  P-Phase: 0.0000
+  S-Phase: 1.0000
+  Noise: 0.0000
+
+Example 4:
+True Classification: P-Phase
+Predicted Classification: P-Phase
+True Label Probabilities:
+  P-Phase: 0.9950
+  S-Phase: 0.0000
+  Noise: 0.0050
+Predicted Label Probabilities:
+  P-Phase: 1.0000
+  S-Phase: 0.0000
+  Noise: 0.0000
+
+Example 5:
+True Classification: Noise
+Predicted Classification: Noise
+True Label Probabilities:
+  P-Phase: 0.0000
+  S-Phase: 0.0000
+  Noise: 1.0000
+Predicted Label Probabilities:
+  P-Phase: 0.0000
+  S-Phase: 0.0000
+  Noise: 1.0000

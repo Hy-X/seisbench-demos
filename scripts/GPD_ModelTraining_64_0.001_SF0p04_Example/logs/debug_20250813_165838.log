@@ -1,0 +1,101 @@
+2025-08-13 16:58:39,124 - INFO - Loading GPD model...
+2025-08-13 16:58:39,381 - INFO - Model Analysis: {
+  "total_parameters": 1741003,
+  "trainable_parameters": 1741003,
+  "non_trainable_parameters": 0,
+  "model_size_mb": 6.641399383544922,
+  "layers": [
+    {
+      "name": "conv1",
+      "type": "Conv1d",
+      "parameters": 2048
+    },
+    {
+      "name": "bn1",
+      "type": "BatchNorm1d",
+      "parameters": 64
+    },
+    {
+      "name": "conv2",
+      "type": "Conv1d",
+      "parameters": 30784
+    },
+    {
+      "name": "bn2",
+      "type": "BatchNorm1d",
+      "parameters": 128
+    },
+    {
+      "name": "conv3",
+      "type": "Conv1d",
+      "parameters": 90240
+    },
+    {
+      "name": "bn3",
+      "type": "BatchNorm1d",
+      "parameters": 256
+    },
+    {
+      "name": "conv4",
+      "type": "Conv1d",
+      "parameters": 295168
+    },
+    {
+      "name": "bn4",
+      "type": "BatchNorm1d",
+      "parameters": 512
+    },
+    {
+      "name": "fc1",
+      "type": "Linear",
+      "parameters": 1280200
+    },
+    {
+      "name": "bn5",
+      "type": "BatchNorm1d",
+      "parameters": 400
+    },
+    {
+      "name": "fc2",
+      "type": "Linear",
+      "parameters": 40200
+    },
+    {
+      "name": "bn6",
+      "type": "BatchNorm1d",
+      "parameters": 400
+    },
+    {
+      "name": "fc3",
+      "type": "Linear",
+      "parameters": 603
+    },
+    {
+      "name": "pool",
+      "type": "MaxPool1d",
+      "parameters": 0
+    }
+  ]
+}
+2025-08-13 16:58:39,382 - INFO - Loading OKLA_1Mil_120s_Ver_3 dataset...
+2025-08-13 16:58:44,823 - INFO - Dataset loaded in 5.44 seconds
+2025-08-13 16:58:47,947 - INFO - Generating dataset visualizations...
+2025-08-13 16:58:59,246 - INFO - Optimizer: Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 0.001
+    maximize: False
+    weight_decay: 0
+)
+2025-08-13 16:58:59,246 - INFO - Learning rate: 0.001
+2025-08-13 16:58:59,246 - INFO - Learning rate scheduler: <torch.optim.lr_scheduler.ReduceLROnPlateau object at 0x2b9a58fc1310>
+2025-08-13 16:58:59,247 - INFO - Starting training for 100 epochs...
+2025-08-13 17:00:20,284 - INFO - Checkpoint saved: checkpoint_epoch_10.pth
+2025-08-13 17:01:28,340 - INFO - Loaded best model for final evaluation
+2025-08-13 17:01:30,865 - INFO - Generating test sample visualization...

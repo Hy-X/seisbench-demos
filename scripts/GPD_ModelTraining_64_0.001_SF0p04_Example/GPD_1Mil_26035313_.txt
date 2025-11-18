@@ -1,0 +1,121 @@
+Creating random sample of 4.0% of the data...
+Sampled dataset size: 45305
+
+Example 1:
+True Classification: P-Phase
+Predicted Classification: S-Phase
+True Label Probabilities:
+  P-Phase: 0.9950
+  S-Phase: 0.0000
+  Noise: 0.0050
+Predicted Label Probabilities:
+  P-Phase: 0.0440
+  S-Phase: 0.9557
+  Noise: 0.0003
+
+Example 2:
+True Classification: Noise
+Predicted Classification: P-Phase
+True Label Probabilities:
+  P-Phase: 0.0000
+  S-Phase: 0.0000
+  Noise: 1.0000
+Predicted Label Probabilities:
+  P-Phase: 0.5634
+  S-Phase: 0.0030
+  Noise: 0.4336
+
+Example 3:
+True Classification: P-Phase
+Predicted Classification: S-Phase
+True Label Probabilities:
+  P-Phase: 0.9950
+  S-Phase: 0.0000
+  Noise: 0.0050
+Predicted Label Probabilities:
+  P-Phase: 0.0466
+  S-Phase: 0.9527
+  Noise: 0.0007
+
+Example 4:
+True Classification: Noise
+Predicted Classification: Noise
+True Label Probabilities:
+  P-Phase: 0.0000
+  S-Phase: 0.0000
+  Noise: 1.0000
+Predicted Label Probabilities:
+  P-Phase: 0.0001
+  S-Phase: 0.0004
+  Noise: 0.9995
+
+Example 5:
+True Classification: S-Phase
+Predicted Classification: S-Phase
+True Label Probabilities:
+  P-Phase: 0.0000
+  S-Phase: 0.9950
+  Noise: 0.0050
+Predicted Label Probabilities:
+  P-Phase: 0.1679
+  S-Phase: 0.7943
+  Noise: 0.0378
+Validation avg loss: 12.914847, Accuracy: 0.9436
+Validation loss decreased (inf --> 12.914847). Saving model... (Epoch 1)
+Saving best model to best_model.pth (Epoch 1)
+Validation avg loss: 12.762888, Accuracy: 0.9523
+Validation loss decreased (12.914847 --> 12.762888). Saving model... (Epoch 2)
+Saving best model to best_model.pth (Epoch 2)
+Validation avg loss: 12.731288, Accuracy: 0.9526
+Validation loss decreased (12.762888 --> 12.731288). Saving model... (Epoch 3)
+Saving best model to best_model.pth (Epoch 3)
+Validation avg loss: 12.679811, Accuracy: 0.9558
+Validation loss decreased (12.731288 --> 12.679811). Saving model... (Epoch 4)
+Saving best model to best_model.pth (Epoch 4)
+Validation avg loss: 12.714209, Accuracy: 0.9546
+EarlyStopping counter: 1 out of 5 (Epoch 5)
+Validation avg loss: 12.620105, Accuracy: 0.9589
+Validation loss decreased (12.679811 --> 12.620105). Saving model... (Epoch 6)
+Saving best model to best_model.pth (Epoch 6)
+Validation avg loss: 12.687414, Accuracy: 0.9560
+EarlyStopping counter: 1 out of 5 (Epoch 7)
+Validation avg loss: 12.640229, Accuracy: 0.9571
+EarlyStopping counter: 2 out of 5 (Epoch 8)
+Validation avg loss: 12.601312, Accuracy: 0.9598
+Validation loss decreased (12.620105 --> 12.601312). Saving model... (Epoch 9)
+Saving best model to best_model.pth (Epoch 9)
+Validation avg loss: 12.628789, Accuracy: 0.9584
+EarlyStopping counter: 1 out of 5 (Epoch 10)
+Validation avg loss: 12.607048, Accuracy: 0.9590
+EarlyStopping counter: 2 out of 5 (Epoch 11)
+Validation avg loss: 12.631329, Accuracy: 0.9589
+EarlyStopping counter: 3 out of 5 (Epoch 12)
+Validation avg loss: 12.577297, Accuracy: 0.9605
+Validation loss decreased (12.601312 --> 12.577297). Saving model... (Epoch 13)
+Saving best model to best_model.pth (Epoch 13)
+Validation avg loss: 12.653681, Accuracy: 0.9579
+EarlyStopping counter: 1 out of 5 (Epoch 14)
+Validation avg loss: 12.606228, Accuracy: 0.9583
+EarlyStopping counter: 2 out of 5 (Epoch 15)
+Validation avg loss: 12.621578, Accuracy: 0.9586
+EarlyStopping counter: 3 out of 5 (Epoch 16)
+Validation avg loss: 12.645229, Accuracy: 0.9567
+EarlyStopping counter: 4 out of 5 (Epoch 17)
+Validation avg loss: 12.612432, Accuracy: 0.9590
+EarlyStopping counter: 5 out of 5 (Epoch 18)
+Early stopping triggered. Saving final model to final_model.pth (Epoch 18)
+Final Test avg loss: 12.748933, Accuracy: 0.9553
+
+Test Sample Prediction Details:
+True Classification: P-Phase
+Predicted Classification: P-Phase
+
+True Label Probabilities:
+  P-Phase: 0.9950
+  S-Phase: 0.0000
+  Noise: 0.0050
+
+Predicted Label Probabilities:
+  P-Phase: 1.0000
+  S-Phase: 0.0000
+  Noise: 0.0000

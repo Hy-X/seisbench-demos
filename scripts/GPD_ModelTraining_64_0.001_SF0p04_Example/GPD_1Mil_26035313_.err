@@ -1,0 +1,1222 @@
+2025-08-13 16:58:39,079 - performance - INFO - Initial system stats: {'cpu_percent': 49.8, 'memory_percent': 16.7, 'memory_used_gb': 160.04959869384766, 'memory_available_gb': 838.9847869873047, 'process_memory_mb': 436.1953125, 'gpu_memory_allocated': 0.0, 'gpu_memory_cached': 0.0, 'gpu_utilization': 0}
+2025-08-13 16:58:39,123 - root - INFO - Configuration loaded from config.json
+2025-08-13 16:58:39,124 - root - INFO - Config contents: {
+  "peak_detection": {
+    "sampling_rate": 100,
+    "height": 0.5,
+    "distance": 100
+  },
+  "training": {
+    "batch_size": 64,
+    "num_workers": 14,
+    "learning_rate": 0.001,
+    "epochs": 100,
+    "patience": 5,
+    "sample_fraction": 0.04,
+    "highpass": 2,
+    "lowpass": 1,
+    "sigma": 30,
+    "probabilities": [
+      1.059,
+      1.074,
+      0.867
+    ],
+    "optimization": {
+      "pin_memory": true,
+      "prefetch_factor": 4,
+      "persistent_workers": true
+    },
+    "lr_scheduler": {
+      "factor": 0.5,
+      "patience": 3
+    },
+    "early_stopping": {
+      "patience": 5,
+      "delta": 0
+    }
+  },
+  "device": {
+    "use_cuda": true,
+    "device_id": 0
+  }
+}
+2025-08-13 16:58:39,124 - debug - INFO - Loading GPD model...
+2025-08-13 16:58:39,204 - __main__ - INFO - CUDA is available. Number of GPUs detected: 1
+2025-08-13 16:58:39,205 - __main__ - INFO - GPU 0: NVIDIA A100-SXM4-80GB (85.0 GB)
+2025-08-13 16:58:39,205 - __main__ - INFO - Using single GPU: cuda:0
+2025-08-13 16:58:39,381 - debug - INFO - Model Analysis: {
+  "total_parameters": 1741003,
+  "trainable_parameters": 1741003,
+  "non_trainable_parameters": 0,
+  "model_size_mb": 6.641399383544922,
+  "layers": [
+    {
+      "name": "conv1",
+      "type": "Conv1d",
+      "parameters": 2048
+    },
+    {
+      "name": "bn1",
+      "type": "BatchNorm1d",
+      "parameters": 64
+    },
+    {
+      "name": "conv2",
+      "type": "Conv1d",
+      "parameters": 30784
+    },
+    {
+      "name": "bn2",
+      "type": "BatchNorm1d",
+      "parameters": 128
+    },
+    {
+      "name": "conv3",
+      "type": "Conv1d",
+      "parameters": 90240
+    },
+    {
+      "name": "bn3",
+      "type": "BatchNorm1d",
+      "parameters": 256
+    },
+    {
+      "name": "conv4",
+      "type": "Conv1d",
+      "parameters": 295168
+    },
+    {
+      "name": "bn4",
+      "type": "BatchNorm1d",
+      "parameters": 512
+    },
+    {
+      "name": "fc1",
+      "type": "Linear",
+      "parameters": 1280200
+    },
+    {
+      "name": "bn5",
+      "type": "BatchNorm1d",
+      "parameters": 400
+    },
+    {
+      "name": "fc2",
+      "type": "Linear",
+      "parameters": 40200
+    },
+    {
+      "name": "bn6",
+      "type": "BatchNorm1d",
+      "parameters": 400
+    },
+    {
+      "name": "fc3",
+      "type": "Linear",
+      "parameters": 603
+    },
+    {
+      "name": "pool",
+      "type": "MaxPool1d",
+      "parameters": 0
+    }
+  ]
+}
+2025-08-13 16:58:39,382 - debug - INFO - Loading OKLA_1Mil_120s_Ver_3 dataset...
+2025-08-13 16:58:44,823 - debug - INFO - Dataset loaded in 5.44 seconds
+2025-08-13 16:58:45,095 - __main__ - INFO - Dataset split sizes:
+2025-08-13 16:58:45,095 - __main__ - INFO -   Training: 31588 samples
+2025-08-13 16:58:45,095 - __main__ - INFO -   Development: 6811 samples
+2025-08-13 16:58:45,095 - __main__ - INFO -   Test: 6906 samples
+2025-08-13 16:58:45,095 - __main__ - INFO -   Total: 45305 samples
+2025-08-13 16:58:45,096 - __main__ - INFO - Applied highpass filter: 2 Hz
+2025-08-13 16:58:45,096 - __main__ - INFO - Applied augmentations:
+2025-08-13 16:58:45,096 - __main__ - INFO -   Window probabilities: [1.059, 1.074, 0.867]
+2025-08-13 16:58:45,096 - __main__ - INFO -   Sigma for probabilistic labeller: 30
+2025-08-13 16:58:45,096 - __main__ - INFO - DataLoader configuration:
+2025-08-13 16:58:45,096 - __main__ - INFO -   Batch size: 64
+2025-08-13 16:58:45,096 - __main__ - INFO -   Number of workers: 14
+2025-08-13 16:58:45,096 - __main__ - INFO -   Pin memory: True
+2025-08-13 16:58:45,096 - __main__ - INFO -   Persistent workers: True
+2025-08-13 16:58:45,096 - performance - INFO - Evaluating initial model performance...
+2025-08-13 16:58:47,947 - performance - INFO - Initial Performance:
+2025-08-13 16:58:47,947 - performance - INFO -   Loss: 20.647670
+2025-08-13 16:58:47,947 - performance - INFO -   Accuracy: 0.5594
+2025-08-13 16:58:47,947 - performance - INFO -   F1 (macro): 0.5306
+2025-08-13 16:58:47,947 - performance - INFO -   F1 (weighted): 0.5310
+2025-08-13 16:58:47,947 - performance - INFO -   P-Phase - Precision: 0.3762, Recall: 0.3549, F1: 0.3653
+2025-08-13 16:58:47,947 - performance - INFO -   S-Phase - Precision: 0.4691, Recall: 0.3237, F1: 0.3831
+2025-08-13 16:58:47,947 - performance - INFO -   Noise - Precision: 0.7303, Recall: 0.9978, F1: 0.8434
+2025-08-13 16:58:47,947 - debug - INFO - Generating dataset visualizations...
+2025-08-13 16:58:48,854 - __main__ - INFO - Analyzing class distribution from 2000 samples...
+2025-08-13 16:58:53,801 - __main__ - INFO - Sample class distribution:
+2025-08-13 16:58:53,801 - __main__ - INFO -   P-Phase: 650 (32.5%)
+2025-08-13 16:58:53,801 - __main__ - INFO -   S-Phase: 702 (35.1%)
+2025-08-13 16:58:53,801 - __main__ - INFO -   Noise: 648 (32.4%)
+2025-08-13 16:58:59,246 - debug - INFO - Optimizer: Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 0.001
+    maximize: False
+    weight_decay: 0
+)
+2025-08-13 16:58:59,246 - debug - INFO - Learning rate: 0.001
+/home/hongyux/.conda/envs/TL/lib/python3.12/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-08-13 16:58:59,246 - debug - INFO - Learning rate scheduler: <torch.optim.lr_scheduler.ReduceLROnPlateau object at 0x2b9a58fc1310>
+2025-08-13 16:58:59,247 - debug - INFO - Starting training for 100 epochs...
+2025-08-13 16:58:59,821 - training - INFO - Epoch 1, Batch 0: loss: 21.025124  [    0/31588]
+2025-08-13 16:58:59,823 - performance - INFO - Epoch 1, Batch 0 - System stats: {'cpu_percent': 58.4, 'memory_percent': 17.7, 'memory_used_gb': 169.32770538330078, 'memory_available_gb': 829.1722984313965, 'process_memory_mb': 1447.71484375, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.08203125, 'gpu_utilization': 0}
+2025-08-13 16:58:59,971 - training - INFO - Epoch 1, Batch 20: loss: 16.160673  [ 1280/31588]
+2025-08-13 16:59:00,159 - training - INFO - Epoch 1, Batch 40: loss: 16.588859  [ 2560/31588]
+2025-08-13 16:59:00,463 - training - INFO - Epoch 1, Batch 60: loss: 14.267103  [ 3840/31588]
+2025-08-13 16:59:00,753 - training - INFO - Epoch 1, Batch 80: loss: 14.463587  [ 5120/31588]
+2025-08-13 16:59:01,092 - training - INFO - Epoch 1, Batch 100: loss: 14.693543  [ 6400/31588]
+2025-08-13 16:59:01,094 - performance - INFO - Epoch 1, Batch 100 - System stats: {'cpu_percent': 70.1, 'memory_percent': 17.9, 'memory_used_gb': 171.12310028076172, 'memory_available_gb': 827.3523826599121, 'process_memory_mb': 1450.1015625, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.103515625, 'gpu_utilization': 14}
+2025-08-13 16:59:01,376 - training - INFO - Epoch 1, Batch 120: loss: 14.565155  [ 7680/31588]
+2025-08-13 16:59:01,608 - training - INFO - Epoch 1, Batch 140: loss: 14.221647  [ 8960/31588]
+2025-08-13 16:59:01,866 - training - INFO - Epoch 1, Batch 160: loss: 14.408203  [10240/31588]
+2025-08-13 16:59:02,196 - training - INFO - Epoch 1, Batch 180: loss: 13.222016  [11520/31588]
+2025-08-13 16:59:02,452 - training - INFO - Epoch 1, Batch 200: loss: 14.084213  [12800/31588]
+2025-08-13 16:59:02,454 - performance - INFO - Epoch 1, Batch 200 - System stats: {'cpu_percent': 71.1, 'memory_percent': 18.2, 'memory_used_gb': 174.09109115600586, 'memory_available_gb': 824.3305511474609, 'process_memory_mb': 1472.3515625, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.103515625, 'gpu_utilization': 14}
+2025-08-13 16:59:02,752 - training - INFO - Epoch 1, Batch 220: loss: 12.652734  [14080/31588]
+2025-08-13 16:59:02,998 - training - INFO - Epoch 1, Batch 240: loss: 13.538805  [15360/31588]
+2025-08-13 16:59:03,321 - training - INFO - Epoch 1, Batch 260: loss: 12.740915  [16640/31588]
+2025-08-13 16:59:03,557 - training - INFO - Epoch 1, Batch 280: loss: 13.487720  [17920/31588]
+2025-08-13 16:59:03,767 - training - INFO - Epoch 1, Batch 300: loss: 12.799039  [19200/31588]
+2025-08-13 16:59:03,769 - performance - INFO - Epoch 1, Batch 300 - System stats: {'cpu_percent': 72.7, 'memory_percent': 18.1, 'memory_used_gb': 173.8137321472168, 'memory_available_gb': 824.5701179504395, 'process_memory_mb': 1492.625, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.103515625, 'gpu_utilization': 16}
+2025-08-13 16:59:04,083 - training - INFO - Epoch 1, Batch 320: loss: 13.336811  [20480/31588]
+2025-08-13 16:59:04,272 - training - INFO - Epoch 1, Batch 340: loss: 13.773705  [21760/31588]
+2025-08-13 16:59:04,576 - training - INFO - Epoch 1, Batch 360: loss: 12.900118  [23040/31588]
+2025-08-13 16:59:04,802 - training - INFO - Epoch 1, Batch 380: loss: 12.542695  [24320/31588]
+2025-08-13 16:59:05,051 - training - INFO - Epoch 1, Batch 400: loss: 13.169344  [25600/31588]
+2025-08-13 16:59:05,053 - performance - INFO - Epoch 1, Batch 400 - System stats: {'cpu_percent': 69.5, 'memory_percent': 17.5, 'memory_used_gb': 167.67017364501953, 'memory_available_gb': 830.6562042236328, 'process_memory_mb': 1512.90625, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.103515625, 'gpu_utilization': 23}
+2025-08-13 16:59:05,228 - training - INFO - Epoch 1, Batch 420: loss: 13.884735  [26880/31588]
+2025-08-13 16:59:05,479 - training - INFO - Epoch 1, Batch 440: loss: 12.615305  [28160/31588]
+2025-08-13 16:59:05,708 - training - INFO - Epoch 1, Batch 460: loss: 13.555599  [29440/31588]
+2025-08-13 16:59:05,962 - training - INFO - Epoch 1, Batch 480: loss: 14.112448  [30720/31588]
+2025-08-13 16:59:06,171 - training - INFO - Epoch 1 Training Summary:
+2025-08-13 16:59:06,171 - training - INFO -   Average Loss: 13.812409
+2025-08-13 16:59:06,171 - training - INFO -   Accuracy: 0.9046
+2025-08-13 16:59:06,171 - training - INFO -   F1 (macro): 0.9040
+2025-08-13 16:59:06,171 - training - INFO -   Epoch Time: 6.89s
+2025-08-13 16:59:06,171 - training - INFO -   Average Batch Time: 0.0074s
+2025-08-13 16:59:06,171 - training - INFO -   Samples/second: 4581.4
+2025-08-13 16:59:07,749 - performance - INFO - Epoch 1 Validation Results:
+2025-08-13 16:59:07,750 - performance - INFO -   Average Loss: 12.914847
+2025-08-13 16:59:07,750 - performance - INFO -   Accuracy: 0.9436
+2025-08-13 16:59:07,750 - performance - INFO -   F1 (macro): 0.9435
+2025-08-13 16:59:07,750 - performance - INFO -   F1 (weighted): 0.9435
+2025-08-13 16:59:07,750 - performance - INFO -   Evaluation Time: 1.57s
+2025-08-13 16:59:07,750 - performance - INFO -   P-Phase - Precision: 0.9631, Recall: 0.9012, F1: 0.9311
+2025-08-13 16:59:07,750 - performance - INFO -   S-Phase - Precision: 0.9577, Recall: 0.9534, F1: 0.9555
+2025-08-13 16:59:07,750 - performance - INFO -   Noise - Precision: 0.9141, Recall: 0.9757, F1: 0.9438
+2025-08-13 16:59:07,750 - performance - INFO -   Confusion Matrix:
+[[2034   77  146]
+ [  40 2149   65]
+ [  38   18 2244]]
+2025-08-13 16:59:07,750 - training - INFO - Epoch 1 Complete:
+2025-08-13 16:59:07,750 - training - INFO -   Train Loss: 13.812409, Val Loss: 12.914847
+2025-08-13 16:59:07,750 - training - INFO -   Train Acc: 0.9046, Val Acc: 0.9436
+2025-08-13 16:59:07,750 - training - INFO -   Epoch Time: 8.50s
+2025-08-13 16:59:07,751 - performance - INFO - Post-epoch 1 system stats: {'cpu_percent': 68.8, 'memory_percent': 18.4, 'memory_used_gb': 176.74985122680664, 'memory_available_gb': 821.5214042663574, 'process_memory_mb': 1536.3515625, 'gpu_memory_allocated': 0.04232025146484375, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 3}
+2025-08-13 16:59:07,751 - training - INFO - Validation loss decreased (inf --> 12.914847). Saving model... (Epoch 1)
+2025-08-13 16:59:07,765 - training - INFO - Saving best model to best_model.pth (Epoch 1)
+2025-08-13 16:59:08,001 - training - INFO - Epoch 2, Batch 0: loss: 12.766819  [    0/31588]
+2025-08-13 16:59:08,003 - performance - INFO - Epoch 2, Batch 0 - System stats: {'cpu_percent': 71.8, 'memory_percent': 18.5, 'memory_used_gb': 177.1255760192871, 'memory_available_gb': 821.1350784301758, 'process_memory_mb': 1541.1875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 3}
+2025-08-13 16:59:08,285 - training - INFO - Epoch 2, Batch 20: loss: 13.937995  [ 1280/31588]
+2025-08-13 16:59:08,565 - training - INFO - Epoch 2, Batch 40: loss: 12.323661  [ 2560/31588]
+2025-08-13 16:59:08,883 - training - INFO - Epoch 2, Batch 60: loss: 12.203808  [ 3840/31588]
+2025-08-13 16:59:09,177 - training - INFO - Epoch 2, Batch 80: loss: 12.361377  [ 5120/31588]
+2025-08-13 16:59:09,455 - training - INFO - Epoch 2, Batch 100: loss: 12.536676  [ 6400/31588]
+2025-08-13 16:59:09,457 - performance - INFO - Epoch 2, Batch 100 - System stats: {'cpu_percent': 73.1, 'memory_percent': 18.7, 'memory_used_gb': 179.1650848388672, 'memory_available_gb': 819.0655937194824, 'process_memory_mb': 1541.390625, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 18}
+2025-08-13 16:59:09,795 - training - INFO - Epoch 2, Batch 120: loss: 12.564392  [ 7680/31588]
+2025-08-13 16:59:10,015 - training - INFO - Epoch 2, Batch 140: loss: 12.883130  [ 8960/31588]
+2025-08-13 16:59:10,332 - training - INFO - Epoch 2, Batch 160: loss: 14.888733  [10240/31588]
+2025-08-13 16:59:10,577 - training - INFO - Epoch 2, Batch 180: loss: 12.160685  [11520/31588]
+2025-08-13 16:59:10,801 - training - INFO - Epoch 2, Batch 200: loss: 12.297333  [12800/31588]
+2025-08-13 16:59:10,803 - performance - INFO - Epoch 2, Batch 200 - System stats: {'cpu_percent': 68.2, 'memory_percent': 18.9, 'memory_used_gb': 181.24312591552734, 'memory_available_gb': 816.9818229675293, 'process_memory_mb': 1541.390625, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 17}
+2025-08-13 16:59:11,056 - training - INFO - Epoch 2, Batch 220: loss: 12.797113  [14080/31588]
+2025-08-13 16:59:11,295 - training - INFO - Epoch 2, Batch 240: loss: 12.656846  [15360/31588]
+2025-08-13 16:59:11,596 - training - INFO - Epoch 2, Batch 260: loss: 12.578841  [16640/31588]
+2025-08-13 16:59:11,851 - training - INFO - Epoch 2, Batch 280: loss: 12.892533  [17920/31588]
+2025-08-13 16:59:12,169 - training - INFO - Epoch 2, Batch 300: loss: 13.961885  [19200/31588]
+2025-08-13 16:59:12,171 - performance - INFO - Epoch 2, Batch 300 - System stats: {'cpu_percent': 72.1, 'memory_percent': 19.0, 'memory_used_gb': 182.20795059204102, 'memory_available_gb': 815.9802894592285, 'process_memory_mb': 1541.390625, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 16}
+2025-08-13 16:59:12,410 - training - INFO - Epoch 2, Batch 320: loss: 13.572383  [20480/31588]
+2025-08-13 16:59:12,628 - training - INFO - Epoch 2, Batch 340: loss: 12.686167  [21760/31588]
+2025-08-13 16:59:13,009 - training - INFO - Epoch 2, Batch 360: loss: 12.717723  [23040/31588]
+2025-08-13 16:59:13,289 - training - INFO - Epoch 2, Batch 380: loss: 13.339772  [24320/31588]
+2025-08-13 16:59:13,669 - training - INFO - Epoch 2, Batch 400: loss: 12.974273  [25600/31588]
+2025-08-13 16:59:13,671 - performance - INFO - Epoch 2, Batch 400 - System stats: {'cpu_percent': 72.1, 'memory_percent': 18.9, 'memory_used_gb': 180.8091278076172, 'memory_available_gb': 817.3596572875977, 'process_memory_mb': 1541.390625, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 13}
+2025-08-13 16:59:13,916 - training - INFO - Epoch 2, Batch 420: loss: 12.466195  [26880/31588]
+2025-08-13 16:59:14,254 - training - INFO - Epoch 2, Batch 440: loss: 13.759306  [28160/31588]
+2025-08-13 16:59:14,458 - training - INFO - Epoch 2, Batch 460: loss: 12.252974  [29440/31588]
+2025-08-13 16:59:14,691 - training - INFO - Epoch 2, Batch 480: loss: 11.862040  [30720/31588]
+2025-08-13 16:59:14,883 - training - INFO - Epoch 2 Training Summary:
+2025-08-13 16:59:14,884 - training - INFO -   Average Loss: 12.971523
+2025-08-13 16:59:14,884 - training - INFO -   Accuracy: 0.9457
+2025-08-13 16:59:14,884 - training - INFO -   F1 (macro): 0.9456
+2025-08-13 16:59:14,884 - training - INFO -   Epoch Time: 7.06s
+2025-08-13 16:59:14,884 - training - INFO -   Average Batch Time: 0.0073s
+2025-08-13 16:59:14,884 - training - INFO -   Samples/second: 4471.6
+2025-08-13 16:59:16,321 - performance - INFO - Epoch 2 Validation Results:
+2025-08-13 16:59:16,321 - performance - INFO -   Average Loss: 12.762888
+2025-08-13 16:59:16,321 - performance - INFO -   Accuracy: 0.9523
+2025-08-13 16:59:16,321 - performance - INFO -   F1 (macro): 0.9522
+2025-08-13 16:59:16,321 - performance - INFO -   F1 (weighted): 0.9523
+2025-08-13 16:59:16,322 - performance - INFO -   Evaluation Time: 1.42s
+2025-08-13 16:59:16,322 - performance - INFO -   P-Phase - Precision: 0.9607, Recall: 0.9338, F1: 0.9470
+2025-08-13 16:59:16,322 - performance - INFO -   S-Phase - Precision: 0.9590, Recall: 0.9582, F1: 0.9586
+2025-08-13 16:59:16,322 - performance - INFO -   Noise - Precision: 0.9378, Recall: 0.9647, F1: 0.9511
+2025-08-13 16:59:16,322 - performance - INFO -   Confusion Matrix:
+[[2101   45  104]
+ [  55 2199   41]
+ [  31   49 2186]]
+2025-08-13 16:59:16,322 - training - INFO - Epoch 2 Complete:
+2025-08-13 16:59:16,322 - training - INFO -   Train Loss: 12.971523, Val Loss: 12.762888
+2025-08-13 16:59:16,322 - training - INFO -   Train Acc: 0.9457, Val Acc: 0.9523
+2025-08-13 16:59:16,322 - training - INFO -   Epoch Time: 8.55s
+2025-08-13 16:59:16,324 - performance - INFO - Post-epoch 2 system stats: {'cpu_percent': 64.4, 'memory_percent': 18.1, 'memory_used_gb': 173.0054817199707, 'memory_available_gb': 825.1077651977539, 'process_memory_mb': 1543.42578125, 'gpu_memory_allocated': 0.04232025146484375, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 5}
+2025-08-13 16:59:16,324 - training - INFO - Validation loss decreased (12.914847 --> 12.762888). Saving model... (Epoch 2)
+2025-08-13 16:59:16,341 - training - INFO - Saving best model to best_model.pth (Epoch 2)
+2025-08-13 16:59:16,561 - training - INFO - Epoch 3, Batch 0: loss: 13.373545  [    0/31588]
+2025-08-13 16:59:16,564 - performance - INFO - Epoch 3, Batch 0 - System stats: {'cpu_percent': 66.8, 'memory_percent': 18.1, 'memory_used_gb': 173.54758071899414, 'memory_available_gb': 824.5608596801758, 'process_memory_mb': 1543.4296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 1}
+2025-08-13 16:59:16,785 - training - INFO - Epoch 3, Batch 20: loss: 13.038903  [ 1280/31588]
+2025-08-13 16:59:17,050 - training - INFO - Epoch 3, Batch 40: loss: 13.210539  [ 2560/31588]
+2025-08-13 16:59:17,356 - training - INFO - Epoch 3, Batch 60: loss: 12.914812  [ 3840/31588]
+2025-08-13 16:59:17,574 - training - INFO - Epoch 3, Batch 80: loss: 12.558752  [ 5120/31588]
+2025-08-13 16:59:17,868 - training - INFO - Epoch 3, Batch 100: loss: 12.556607  [ 6400/31588]
+2025-08-13 16:59:17,870 - performance - INFO - Epoch 3, Batch 100 - System stats: {'cpu_percent': 72.2, 'memory_percent': 18.1, 'memory_used_gb': 173.44487380981445, 'memory_available_gb': 824.6387825012207, 'process_memory_mb': 1543.68359375, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 18}
+2025-08-13 16:59:18,130 - training - INFO - Epoch 3, Batch 120: loss: 12.935722  [ 7680/31588]
+2025-08-13 16:59:18,373 - training - INFO - Epoch 3, Batch 140: loss: 13.094504  [ 8960/31588]
+2025-08-13 16:59:18,676 - training - INFO - Epoch 3, Batch 160: loss: 13.215941  [10240/31588]
+2025-08-13 16:59:18,912 - training - INFO - Epoch 3, Batch 180: loss: 12.849409  [11520/31588]
+2025-08-13 16:59:19,228 - training - INFO - Epoch 3, Batch 200: loss: 13.759092  [12800/31588]
+2025-08-13 16:59:19,234 - performance - INFO - Epoch 3, Batch 200 - System stats: {'cpu_percent': 72.6, 'memory_percent': 18.3, 'memory_used_gb': 175.16699600219727, 'memory_available_gb': 822.883602142334, 'process_memory_mb': 1543.4296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 17}
+2025-08-13 16:59:19,477 - training - INFO - Epoch 3, Batch 220: loss: 12.630921  [14080/31588]
+2025-08-13 16:59:19,792 - training - INFO - Epoch 3, Batch 240: loss: 13.229640  [15360/31588]
+2025-08-13 16:59:19,975 - training - INFO - Epoch 3, Batch 260: loss: 12.955105  [16640/31588]
+2025-08-13 16:59:20,326 - training - INFO - Epoch 3, Batch 280: loss: 13.324282  [17920/31588]
+2025-08-13 16:59:20,588 - training - INFO - Epoch 3, Batch 300: loss: 12.515998  [19200/31588]
+2025-08-13 16:59:20,589 - performance - INFO - Epoch 3, Batch 300 - System stats: {'cpu_percent': 68.3, 'memory_percent': 18.2, 'memory_used_gb': 174.3321533203125, 'memory_available_gb': 823.6910095214844, 'process_memory_mb': 1543.4453125, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 16}
+2025-08-13 16:59:20,879 - training - INFO - Epoch 3, Batch 320: loss: 12.305562  [20480/31588]
+2025-08-13 16:59:21,116 - training - INFO - Epoch 3, Batch 340: loss: 12.513319  [21760/31588]
+2025-08-13 16:59:21,395 - training - INFO - Epoch 3, Batch 360: loss: 13.446192  [23040/31588]
+2025-08-13 16:59:21,645 - training - INFO - Epoch 3, Batch 380: loss: 13.035599  [24320/31588]
+2025-08-13 16:59:21,855 - training - INFO - Epoch 3, Batch 400: loss: 12.517888  [25600/31588]
+2025-08-13 16:59:21,857 - performance - INFO - Epoch 3, Batch 400 - System stats: {'cpu_percent': 70.0, 'memory_percent': 17.7, 'memory_used_gb': 169.36675262451172, 'memory_available_gb': 828.6341781616211, 'process_memory_mb': 1543.4453125, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 14}
+2025-08-13 16:59:22,168 - training - INFO - Epoch 3, Batch 420: loss: 13.126204  [26880/31588]
+2025-08-13 16:59:22,421 - training - INFO - Epoch 3, Batch 440: loss: 13.047964  [28160/31588]
+2025-08-13 16:59:22,645 - training - INFO - Epoch 3, Batch 460: loss: 13.375237  [29440/31588]
+2025-08-13 16:59:22,837 - training - INFO - Epoch 3, Batch 480: loss: 13.011962  [30720/31588]
+2025-08-13 16:59:23,033 - training - INFO - Epoch 3 Training Summary:
+2025-08-13 16:59:23,033 - training - INFO -   Average Loss: 12.830317
+2025-08-13 16:59:23,034 - training - INFO -   Accuracy: 0.9517
+2025-08-13 16:59:23,034 - training - INFO -   F1 (macro): 0.9518
+2025-08-13 16:59:23,034 - training - INFO -   Epoch Time: 6.63s
+2025-08-13 16:59:23,034 - training - INFO -   Average Batch Time: 0.0071s
+2025-08-13 16:59:23,034 - training - INFO -   Samples/second: 4764.2
+2025-08-13 16:59:24,677 - performance - INFO - Epoch 3 Validation Results:
+2025-08-13 16:59:24,677 - performance - INFO -   Average Loss: 12.731288
+2025-08-13 16:59:24,677 - performance - INFO -   Accuracy: 0.9526
+2025-08-13 16:59:24,677 - performance - INFO -   F1 (macro): 0.9528
+2025-08-13 16:59:24,677 - performance - INFO -   F1 (weighted): 0.9526
+2025-08-13 16:59:24,677 - performance - INFO -   Evaluation Time: 1.63s
+2025-08-13 16:59:24,677 - performance - INFO -   P-Phase - Precision: 0.9438, Recall: 0.9459, F1: 0.9448
+2025-08-13 16:59:24,677 - performance - INFO -   S-Phase - Precision: 0.9739, Recall: 0.9531, F1: 0.9634
+2025-08-13 16:59:24,677 - performance - INFO -   Noise - Precision: 0.9422, Recall: 0.9585, F1: 0.9503
+2025-08-13 16:59:24,678 - performance - INFO -   Confusion Matrix:
+[[2150   28   95]
+ [  56 2054   45]
+ [  72   27 2284]]
+2025-08-13 16:59:24,678 - training - INFO - Epoch 3 Complete:
+2025-08-13 16:59:24,678 - training - INFO -   Train Loss: 12.830317, Val Loss: 12.731288
+2025-08-13 16:59:24,678 - training - INFO -   Train Acc: 0.9517, Val Acc: 0.9526
+2025-08-13 16:59:24,678 - training - INFO -   Epoch Time: 8.32s
+2025-08-13 16:59:24,679 - performance - INFO - Post-epoch 3 system stats: {'cpu_percent': 68.9, 'memory_percent': 18.5, 'memory_used_gb': 176.74657440185547, 'memory_available_gb': 821.1985969543457, 'process_memory_mb': 1543.4453125, 'gpu_memory_allocated': 0.04232025146484375, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 4}
+2025-08-13 16:59:24,679 - training - INFO - Validation loss decreased (12.762888 --> 12.731288). Saving model... (Epoch 3)
+2025-08-13 16:59:24,765 - training - INFO - Saving best model to best_model.pth (Epoch 3)
+2025-08-13 16:59:25,075 - training - INFO - Epoch 4, Batch 0: loss: 12.980047  [    0/31588]
+2025-08-13 16:59:25,077 - performance - INFO - Epoch 4, Batch 0 - System stats: {'cpu_percent': 66.4, 'memory_percent': 18.5, 'memory_used_gb': 176.73105239868164, 'memory_available_gb': 821.2131462097168, 'process_memory_mb': 1543.4453125, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 1}
+2025-08-13 16:59:25,313 - training - INFO - Epoch 4, Batch 20: loss: 13.039840  [ 1280/31588]
+2025-08-13 16:59:25,530 - training - INFO - Epoch 4, Batch 40: loss: 13.079554  [ 2560/31588]
+2025-08-13 16:59:25,868 - training - INFO - Epoch 4, Batch 60: loss: 12.636892  [ 3840/31588]
+2025-08-13 16:59:26,081 - training - INFO - Epoch 4, Batch 80: loss: 12.047611  [ 5120/31588]
+2025-08-13 16:59:26,421 - training - INFO - Epoch 4, Batch 100: loss: 12.973753  [ 6400/31588]
+2025-08-13 16:59:26,422 - performance - INFO - Epoch 4, Batch 100 - System stats: {'cpu_percent': 71.1, 'memory_percent': 18.7, 'memory_used_gb': 178.8349494934082, 'memory_available_gb': 819.080192565918, 'process_memory_mb': 1543.453125, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 16}
+2025-08-13 16:59:26,661 - training - INFO - Epoch 4, Batch 120: loss: 12.962154  [ 7680/31588]
+2025-08-13 16:59:26,923 - training - INFO - Epoch 4, Batch 140: loss: 12.625108  [ 8960/31588]
+2025-08-13 16:59:27,170 - training - INFO - Epoch 4, Batch 160: loss: 12.664714  [10240/31588]
+2025-08-13 16:59:27,478 - training - INFO - Epoch 4, Batch 180: loss: 12.212251  [11520/31588]
+2025-08-13 16:59:27,716 - training - INFO - Epoch 4, Batch 200: loss: 12.684055  [12800/31588]
+2025-08-13 16:59:27,718 - performance - INFO - Epoch 4, Batch 200 - System stats: {'cpu_percent': 72.3, 'memory_percent': 19.0, 'memory_used_gb': 181.52355575561523, 'memory_available_gb': 816.3716506958008, 'process_memory_mb': 1543.453125, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 17}
+2025-08-13 16:59:27,945 - training - INFO - Epoch 4, Batch 220: loss: 12.209589  [14080/31588]
+2025-08-13 16:59:28,206 - training - INFO - Epoch 4, Batch 240: loss: 12.806629  [15360/31588]
+2025-08-13 16:59:28,442 - training - INFO - Epoch 4, Batch 260: loss: 12.768932  [16640/31588]
+2025-08-13 16:59:28,679 - training - INFO - Epoch 4, Batch 280: loss: 13.680637  [17920/31588]
+2025-08-13 16:59:28,927 - training - INFO - Epoch 4, Batch 300: loss: 12.037089  [19200/31588]
+2025-08-13 16:59:28,928 - performance - INFO - Epoch 4, Batch 300 - System stats: {'cpu_percent': 68.2, 'memory_percent': 18.8, 'memory_used_gb': 179.5316047668457, 'memory_available_gb': 818.3198623657227, 'process_memory_mb': 1543.453125, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 23}
+2025-08-13 16:59:29,194 - training - INFO - Epoch 4, Batch 320: loss: 12.741991  [20480/31588]
+2025-08-13 16:59:29,403 - training - INFO - Epoch 4, Batch 340: loss: 12.789581  [21760/31588]
+2025-08-13 16:59:29,764 - training - INFO - Epoch 4, Batch 360: loss: 13.587844  [23040/31588]
+2025-08-13 16:59:30,002 - training - INFO - Epoch 4, Batch 380: loss: 13.647090  [24320/31588]
+2025-08-13 16:59:30,326 - training - INFO - Epoch 4, Batch 400: loss: 13.583871  [25600/31588]
+2025-08-13 16:59:30,328 - performance - INFO - Epoch 4, Batch 400 - System stats: {'cpu_percent': 69.3, 'memory_percent': 18.9, 'memory_used_gb': 180.5806541442871, 'memory_available_gb': 817.2414588928223, 'process_memory_mb': 1543.453125, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 16}
+2025-08-13 16:59:30,528 - training - INFO - Epoch 4, Batch 420: loss: 12.691135  [26880/31588]
+2025-08-13 16:59:30,743 - training - INFO - Epoch 4, Batch 440: loss: 12.317557  [28160/31588]
+2025-08-13 16:59:31,007 - training - INFO - Epoch 4, Batch 460: loss: 13.399327  [29440/31588]
+2025-08-13 16:59:31,230 - training - INFO - Epoch 4, Batch 480: loss: 12.854175  [30720/31588]
+2025-08-13 16:59:31,417 - training - INFO - Epoch 4 Training Summary:
+2025-08-13 16:59:31,418 - training - INFO -   Average Loss: 12.773114
+2025-08-13 16:59:31,418 - training - INFO -   Accuracy: 0.9547
+2025-08-13 16:59:31,418 - training - INFO -   F1 (macro): 0.9548
+2025-08-13 16:59:31,418 - training - INFO -   Epoch Time: 6.55s
+2025-08-13 16:59:31,418 - training - INFO -   Average Batch Time: 0.0067s
+2025-08-13 16:59:31,418 - training - INFO -   Samples/second: 4823.7
+2025-08-13 16:59:32,916 - performance - INFO - Epoch 4 Validation Results:
+2025-08-13 16:59:32,916 - performance - INFO -   Average Loss: 12.679811
+2025-08-13 16:59:32,916 - performance - INFO -   Accuracy: 0.9558
+2025-08-13 16:59:32,916 - performance - INFO -   F1 (macro): 0.9558
+2025-08-13 16:59:32,917 - performance - INFO -   F1 (weighted): 0.9558
+2025-08-13 16:59:32,917 - performance - INFO -   Evaluation Time: 1.48s
+2025-08-13 16:59:32,917 - performance - INFO -   P-Phase - Precision: 0.9648, Recall: 0.9329, F1: 0.9486
+2025-08-13 16:59:32,917 - performance - INFO -   S-Phase - Precision: 0.9713, Recall: 0.9653, F1: 0.9683
+2025-08-13 16:59:32,917 - performance - INFO -   Noise - Precision: 0.9322, Recall: 0.9696, F1: 0.9505
+2025-08-13 16:59:32,917 - performance - INFO -   Confusion Matrix:
+[[2141   41  113]
+ [  34 2198   45]
+ [  44   24 2171]]
+2025-08-13 16:59:32,917 - training - INFO - Epoch 4 Complete:
+2025-08-13 16:59:32,917 - training - INFO -   Train Loss: 12.773114, Val Loss: 12.679811
+2025-08-13 16:59:32,917 - training - INFO -   Train Acc: 0.9547, Val Acc: 0.9558
+2025-08-13 16:59:32,917 - training - INFO -   Epoch Time: 8.08s
+2025-08-13 16:59:32,919 - performance - INFO - Post-epoch 4 system stats: {'cpu_percent': 67.8, 'memory_percent': 17.7, 'memory_used_gb': 168.7520751953125, 'memory_available_gb': 829.0388412475586, 'process_memory_mb': 1543.453125, 'gpu_memory_allocated': 0.04232025146484375, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 3}
+2025-08-13 16:59:32,919 - training - INFO - Validation loss decreased (12.731288 --> 12.679811). Saving model... (Epoch 4)
+2025-08-13 16:59:32,935 - training - INFO - Saving best model to best_model.pth (Epoch 4)
+2025-08-13 16:59:33,151 - training - INFO - Epoch 5, Batch 0: loss: 12.797160  [    0/31588]
+2025-08-13 16:59:33,153 - performance - INFO - Epoch 5, Batch 0 - System stats: {'cpu_percent': 62.3, 'memory_percent': 17.7, 'memory_used_gb': 168.5362205505371, 'memory_available_gb': 829.2396354675293, 'process_memory_mb': 1543.453125, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 5}
+2025-08-13 16:59:33,344 - training - INFO - Epoch 5, Batch 20: loss: 12.856730  [ 1280/31588]
+2025-08-13 16:59:33,584 - training - INFO - Epoch 5, Batch 40: loss: 12.215357  [ 2560/31588]
+2025-08-13 16:59:33,921 - training - INFO - Epoch 5, Batch 60: loss: 12.701467  [ 3840/31588]
+2025-08-13 16:59:34,132 - training - INFO - Epoch 5, Batch 80: loss: 12.914859  [ 5120/31588]
+2025-08-13 16:59:34,472 - training - INFO - Epoch 5, Batch 100: loss: 13.349412  [ 6400/31588]
+2025-08-13 16:59:34,474 - performance - INFO - Epoch 5, Batch 100 - System stats: {'cpu_percent': 67.5, 'memory_percent': 17.3, 'memory_used_gb': 164.928466796875, 'memory_available_gb': 832.830436706543, 'process_memory_mb': 1543.453125, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 17}
+2025-08-13 16:59:34,704 - training - INFO - Epoch 5, Batch 120: loss: 13.442585  [ 7680/31588]
+2025-08-13 16:59:35,077 - training - INFO - Epoch 5, Batch 140: loss: 11.951732  [ 8960/31588]
+2025-08-13 16:59:35,283 - training - INFO - Epoch 5, Batch 160: loss: 12.597170  [10240/31588]
+2025-08-13 16:59:35,488 - training - INFO - Epoch 5, Batch 180: loss: 13.007673  [11520/31588]
+2025-08-13 16:59:35,735 - training - INFO - Epoch 5, Batch 200: loss: 12.419907  [12800/31588]
+2025-08-13 16:59:35,737 - performance - INFO - Epoch 5, Batch 200 - System stats: {'cpu_percent': 70.5, 'memory_percent': 17.2, 'memory_used_gb': 163.65576934814453, 'memory_available_gb': 834.0748481750488, 'process_memory_mb': 1543.453125, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 18}
+2025-08-13 16:59:35,948 - training - INFO - Epoch 5, Batch 220: loss: 12.437150  [14080/31588]
+2025-08-13 16:59:36,183 - training - INFO - Epoch 5, Batch 240: loss: 12.867000  [15360/31588]
+2025-08-13 16:59:36,413 - training - INFO - Epoch 5, Batch 260: loss: 12.879561  [16640/31588]
+2025-08-13 16:59:36,717 - training - INFO - Epoch 5, Batch 280: loss: 14.234659  [17920/31588]
+2025-08-13 16:59:36,945 - training - INFO - Epoch 5, Batch 300: loss: 13.904029  [19200/31588]
+2025-08-13 16:59:36,947 - performance - INFO - Epoch 5, Batch 300 - System stats: {'cpu_percent': 71.1, 'memory_percent': 17.6, 'memory_used_gb': 167.15043258666992, 'memory_available_gb': 830.5592880249023, 'process_memory_mb': 1543.453125, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 20}
+2025-08-13 16:59:37,123 - training - INFO - Epoch 5, Batch 320: loss: 13.269436  [20480/31588]
+2025-08-13 16:59:37,375 - training - INFO - Epoch 5, Batch 340: loss: 13.169114  [21760/31588]
+2025-08-13 16:59:37,556 - training - INFO - Epoch 5, Batch 360: loss: 12.267674  [23040/31588]
+2025-08-13 16:59:37,822 - training - INFO - Epoch 5, Batch 380: loss: 12.667819  [24320/31588]
+2025-08-13 16:59:38,027 - training - INFO - Epoch 5, Batch 400: loss: 12.169684  [25600/31588]
+2025-08-13 16:59:38,029 - performance - INFO - Epoch 5, Batch 400 - System stats: {'cpu_percent': 66.9, 'memory_percent': 17.6, 'memory_used_gb': 167.69966888427734, 'memory_available_gb': 829.9824485778809, 'process_memory_mb': 1543.453125, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 16}
+2025-08-13 16:59:38,303 - training - INFO - Epoch 5, Batch 420: loss: 12.281082  [26880/31588]
+2025-08-13 16:59:38,495 - training - INFO - Epoch 5, Batch 440: loss: 12.905291  [28160/31588]
+2025-08-13 16:59:38,692 - training - INFO - Epoch 5, Batch 460: loss: 13.462403  [29440/31588]
+2025-08-13 16:59:38,915 - training - INFO - Epoch 5, Batch 480: loss: 12.852175  [30720/31588]
+2025-08-13 16:59:39,084 - training - INFO - Epoch 5 Training Summary:
+2025-08-13 16:59:39,084 - training - INFO -   Average Loss: 12.705351
+2025-08-13 16:59:39,084 - training - INFO -   Accuracy: 0.9585
+2025-08-13 16:59:39,084 - training - INFO -   F1 (macro): 0.9585
+2025-08-13 16:59:39,084 - training - INFO -   Epoch Time: 6.09s
+2025-08-13 16:59:39,085 - training - INFO -   Average Batch Time: 0.0073s
+2025-08-13 16:59:39,085 - training - INFO -   Samples/second: 5187.4
+2025-08-13 16:59:40,506 - performance - INFO - Epoch 5 Validation Results:
+2025-08-13 16:59:40,506 - performance - INFO -   Average Loss: 12.714209
+2025-08-13 16:59:40,506 - performance - INFO -   Accuracy: 0.9546
+2025-08-13 16:59:40,506 - performance - INFO -   F1 (macro): 0.9545
+2025-08-13 16:59:40,506 - performance - INFO -   F1 (weighted): 0.9546
+2025-08-13 16:59:40,506 - performance - INFO -   Evaluation Time: 1.40s
+2025-08-13 16:59:40,506 - performance - INFO -   P-Phase - Precision: 0.9713, Recall: 0.9250, F1: 0.9476
+2025-08-13 16:59:40,506 - performance - INFO -   S-Phase - Precision: 0.9695, Recall: 0.9637, F1: 0.9666
+2025-08-13 16:59:40,506 - performance - INFO -   Noise - Precision: 0.9248, Recall: 0.9754, F1: 0.9494
+2025-08-13 16:59:40,507 - performance - INFO -   Confusion Matrix:
+[[2097   38  132]
+ [  39 2227   45]
+ [  23   32 2178]]
+2025-08-13 16:59:40,507 - training - INFO - Epoch 5 Complete:
+2025-08-13 16:59:40,507 - training - INFO -   Train Loss: 12.705351, Val Loss: 12.714209
+2025-08-13 16:59:40,507 - training - INFO -   Train Acc: 0.9585, Val Acc: 0.9546
+2025-08-13 16:59:40,507 - training - INFO -   Epoch Time: 7.56s
+2025-08-13 16:59:40,509 - performance - INFO - Post-epoch 5 system stats: {'cpu_percent': 62.8, 'memory_percent': 17.9, 'memory_used_gb': 170.69572067260742, 'memory_available_gb': 826.9604148864746, 'process_memory_mb': 1543.45703125, 'gpu_memory_allocated': 0.04232025146484375, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 6}
+2025-08-13 16:59:40,509 - training - INFO - EarlyStopping counter: 1 out of 5 (Epoch 5)
+2025-08-13 16:59:40,732 - training - INFO - Epoch 6, Batch 0: loss: 12.448477  [    0/31588]
+2025-08-13 16:59:40,735 - performance - INFO - Epoch 6, Batch 0 - System stats: {'cpu_percent': 62.6, 'memory_percent': 18.0, 'memory_used_gb': 171.31495666503906, 'memory_available_gb': 826.3489990234375, 'process_memory_mb': 1543.45703125, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 3}
+2025-08-13 16:59:40,963 - training - INFO - Epoch 6, Batch 20: loss: 12.571291  [ 1280/31588]
+2025-08-13 16:59:41,164 - training - INFO - Epoch 6, Batch 40: loss: 11.844015  [ 2560/31588]
+2025-08-13 16:59:41,490 - training - INFO - Epoch 6, Batch 60: loss: 12.741864  [ 3840/31588]
+2025-08-13 16:59:41,697 - training - INFO - Epoch 6, Batch 80: loss: 12.284727  [ 5120/31588]
+2025-08-13 16:59:41,958 - training - INFO - Epoch 6, Batch 100: loss: 13.013057  [ 6400/31588]
+2025-08-13 16:59:41,960 - performance - INFO - Epoch 6, Batch 100 - System stats: {'cpu_percent': 60.0, 'memory_percent': 18.2, 'memory_used_gb': 173.23069381713867, 'memory_available_gb': 824.430103302002, 'process_memory_mb': 1543.45703125, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 17}
+2025-08-13 16:59:42,197 - training - INFO - Epoch 6, Batch 120: loss: 13.464196  [ 7680/31588]
+2025-08-13 16:59:42,422 - training - INFO - Epoch 6, Batch 140: loss: 11.964549  [ 8960/31588]
+2025-08-13 16:59:42,702 - training - INFO - Epoch 6, Batch 160: loss: 11.908483  [10240/31588]
+2025-08-13 16:59:42,942 - training - INFO - Epoch 6, Batch 180: loss: 12.431442  [11520/31588]
+2025-08-13 16:59:43,160 - training - INFO - Epoch 6, Batch 200: loss: 13.087934  [12800/31588]
+2025-08-13 16:59:43,162 - performance - INFO - Epoch 6, Batch 200 - System stats: {'cpu_percent': 60.6, 'memory_percent': 18.2, 'memory_used_gb': 173.67615127563477, 'memory_available_gb': 823.9912528991699, 'process_memory_mb': 1543.45703125, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 19}
+2025-08-13 16:59:43,419 - training - INFO - Epoch 6, Batch 220: loss: 12.355812  [14080/31588]
+2025-08-13 16:59:43,695 - training - INFO - Epoch 6, Batch 240: loss: 13.466258  [15360/31588]
+2025-08-13 16:59:43,910 - training - INFO - Epoch 6, Batch 260: loss: 12.295166  [16640/31588]
+2025-08-13 16:59:44,209 - training - INFO - Epoch 6, Batch 280: loss: 12.383436  [17920/31588]
+2025-08-13 16:59:44,396 - training - INFO - Epoch 6, Batch 300: loss: 12.439016  [19200/31588]
+2025-08-13 16:59:44,398 - performance - INFO - Epoch 6, Batch 300 - System stats: {'cpu_percent': 61.2, 'memory_percent': 18.4, 'memory_used_gb': 175.68781280517578, 'memory_available_gb': 821.9779243469238, 'process_memory_mb': 1543.45703125, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 19}
+2025-08-13 16:59:44,657 - training - INFO - Epoch 6, Batch 320: loss: 13.959038  [20480/31588]
+2025-08-13 16:59:44,863 - training - INFO - Epoch 6, Batch 340: loss: 12.705857  [21760/31588]
+2025-08-13 16:59:45,191 - training - INFO - Epoch 6, Batch 360: loss: 12.260538  [23040/31588]
+2025-08-13 16:59:45,453 - training - INFO - Epoch 6, Batch 380: loss: 12.729098  [24320/31588]
+2025-08-13 16:59:45,675 - training - INFO - Epoch 6, Batch 400: loss: 12.298000  [25600/31588]
+2025-08-13 16:59:45,677 - performance - INFO - Epoch 6, Batch 400 - System stats: {'cpu_percent': 68.0, 'memory_percent': 18.6, 'memory_used_gb': 177.8128776550293, 'memory_available_gb': 819.8545188903809, 'process_memory_mb': 1543.45703125, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 20}
+2025-08-13 16:59:46,008 - training - INFO - Epoch 6, Batch 420: loss: 13.614373  [26880/31588]
+2025-08-13 16:59:46,200 - training - INFO - Epoch 6, Batch 440: loss: 13.306788  [28160/31588]
+2025-08-13 16:59:46,410 - training - INFO - Epoch 6, Batch 460: loss: 13.485460  [29440/31588]
+2025-08-13 16:59:46,645 - training - INFO - Epoch 6, Batch 480: loss: 13.159393  [30720/31588]
+2025-08-13 16:59:46,870 - training - INFO - Epoch 6 Training Summary:
+2025-08-13 16:59:46,870 - training - INFO -   Average Loss: 12.671958
+2025-08-13 16:59:46,870 - training - INFO -   Accuracy: 0.9599
+2025-08-13 16:59:46,870 - training - INFO -   F1 (macro): 0.9599
+2025-08-13 16:59:46,870 - training - INFO -   Epoch Time: 6.32s
+2025-08-13 16:59:46,870 - training - INFO -   Average Batch Time: 0.0068s
+2025-08-13 16:59:46,870 - training - INFO -   Samples/second: 4995.9
+2025-08-13 16:59:48,327 - performance - INFO - Epoch 6 Validation Results:
+2025-08-13 16:59:48,327 - performance - INFO -   Average Loss: 12.620105
+2025-08-13 16:59:48,327 - performance - INFO -   Accuracy: 0.9589
+2025-08-13 16:59:48,327 - performance - INFO -   F1 (macro): 0.9588
+2025-08-13 16:59:48,327 - performance - INFO -   F1 (weighted): 0.9589
+2025-08-13 16:59:48,327 - performance - INFO -   Evaluation Time: 1.44s
+2025-08-13 16:59:48,327 - performance - INFO -   P-Phase - Precision: 0.9743, Recall: 0.9339, F1: 0.9537
+2025-08-13 16:59:48,328 - performance - INFO -   S-Phase - Precision: 0.9671, Recall: 0.9742, F1: 0.9706
+2025-08-13 16:59:48,328 - performance - INFO -   Noise - Precision: 0.9364, Recall: 0.9685, F1: 0.9522
+2025-08-13 16:59:48,328 - performance - INFO -   Confusion Matrix:
+[[2120   41  109]
+ [  20 2231   39]
+ [  36   35 2180]]
+2025-08-13 16:59:48,328 - training - INFO - Epoch 6 Complete:
+2025-08-13 16:59:48,328 - training - INFO -   Train Loss: 12.671958, Val Loss: 12.620105
+2025-08-13 16:59:48,328 - training - INFO -   Train Acc: 0.9599, Val Acc: 0.9589
+2025-08-13 16:59:48,328 - training - INFO -   Epoch Time: 7.82s
+2025-08-13 16:59:48,330 - performance - INFO - Post-epoch 6 system stats: {'cpu_percent': 61.5, 'memory_percent': 18.2, 'memory_used_gb': 173.67938995361328, 'memory_available_gb': 823.9810180664062, 'process_memory_mb': 1543.45703125, 'gpu_memory_allocated': 0.04232025146484375, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 4}
+2025-08-13 16:59:48,330 - training - INFO - Validation loss decreased (12.679811 --> 12.620105). Saving model... (Epoch 6)
+2025-08-13 16:59:48,347 - training - INFO - Saving best model to best_model.pth (Epoch 6)
+2025-08-13 16:59:48,555 - training - INFO - Epoch 7, Batch 0: loss: 12.982876  [    0/31588]
+2025-08-13 16:59:48,558 - performance - INFO - Epoch 7, Batch 0 - System stats: {'cpu_percent': 60.7, 'memory_percent': 18.3, 'memory_used_gb': 175.07658004760742, 'memory_available_gb': 822.584400177002, 'process_memory_mb': 1543.46875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 2}
+2025-08-13 16:59:48,778 - training - INFO - Epoch 7, Batch 20: loss: 12.804304  [ 1280/31588]
+2025-08-13 16:59:49,014 - training - INFO - Epoch 7, Batch 40: loss: 12.554343  [ 2560/31588]
+2025-08-13 16:59:49,312 - training - INFO - Epoch 7, Batch 60: loss: 12.589709  [ 3840/31588]
+2025-08-13 16:59:49,548 - training - INFO - Epoch 7, Batch 80: loss: 12.955762  [ 5120/31588]
+2025-08-13 16:59:49,751 - training - INFO - Epoch 7, Batch 100: loss: 12.840875  [ 6400/31588]
+2025-08-13 16:59:49,752 - performance - INFO - Epoch 7, Batch 100 - System stats: {'cpu_percent': 61.6, 'memory_percent': 17.6, 'memory_used_gb': 168.1003761291504, 'memory_available_gb': 829.645149230957, 'process_memory_mb': 1543.46875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 18}
+2025-08-13 16:59:50,088 - training - INFO - Epoch 7, Batch 120: loss: 12.983171  [ 7680/31588]
+2025-08-13 16:59:50,330 - training - INFO - Epoch 7, Batch 140: loss: 13.643832  [ 8960/31588]
+2025-08-13 16:59:50,621 - training - INFO - Epoch 7, Batch 160: loss: 12.646738  [10240/31588]
+2025-08-13 16:59:50,816 - training - INFO - Epoch 7, Batch 180: loss: 12.354890  [11520/31588]
+2025-08-13 16:59:51,034 - training - INFO - Epoch 7, Batch 200: loss: 12.169493  [12800/31588]
+2025-08-13 16:59:51,036 - performance - INFO - Epoch 7, Batch 200 - System stats: {'cpu_percent': 63.4, 'memory_percent': 17.8, 'memory_used_gb': 169.5833282470703, 'memory_available_gb': 828.1630554199219, 'process_memory_mb': 1543.46875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 24}
+2025-08-13 16:59:51,332 - training - INFO - Epoch 7, Batch 220: loss: 12.742765  [14080/31588]
+2025-08-13 16:59:51,770 - training - INFO - Epoch 7, Batch 240: loss: 12.389876  [15360/31588]
+2025-08-13 16:59:52,062 - training - INFO - Epoch 7, Batch 260: loss: 11.834248  [16640/31588]
+2025-08-13 16:59:52,320 - training - INFO - Epoch 7, Batch 280: loss: 12.367253  [17920/31588]
+2025-08-13 16:59:52,648 - training - INFO - Epoch 7, Batch 300: loss: 12.950159  [19200/31588]
+2025-08-13 16:59:52,650 - performance - INFO - Epoch 7, Batch 300 - System stats: {'cpu_percent': 62.1, 'memory_percent': 18.0, 'memory_used_gb': 171.59344482421875, 'memory_available_gb': 826.1539916992188, 'process_memory_mb': 1543.46875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 20}
+2025-08-13 16:59:52,931 - training - INFO - Epoch 7, Batch 320: loss: 12.331229  [20480/31588]
+2025-08-13 16:59:53,317 - training - INFO - Epoch 7, Batch 340: loss: 12.203022  [21760/31588]
+2025-08-13 16:59:53,548 - training - INFO - Epoch 7, Batch 360: loss: 12.903044  [23040/31588]
+2025-08-13 16:59:53,829 - training - INFO - Epoch 7, Batch 380: loss: 11.916673  [24320/31588]
+2025-08-13 16:59:54,022 - training - INFO - Epoch 7, Batch 400: loss: 12.237401  [25600/31588]
+2025-08-13 16:59:54,024 - performance - INFO - Epoch 7, Batch 400 - System stats: {'cpu_percent': 60.3, 'memory_percent': 18.1, 'memory_used_gb': 173.17898178100586, 'memory_available_gb': 824.5645980834961, 'process_memory_mb': 1543.46875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 20}
+2025-08-13 16:59:54,223 - training - INFO - Epoch 7, Batch 420: loss: 12.766908  [26880/31588]
+2025-08-13 16:59:54,478 - training - INFO - Epoch 7, Batch 440: loss: 12.180596  [28160/31588]
+2025-08-13 16:59:54,634 - training - INFO - Epoch 7, Batch 460: loss: 12.708682  [29440/31588]
+2025-08-13 16:59:54,890 - training - INFO - Epoch 7, Batch 480: loss: 12.868076  [30720/31588]
+2025-08-13 16:59:55,067 - training - INFO - Epoch 7 Training Summary:
+2025-08-13 16:59:55,067 - training - INFO -   Average Loss: 12.613343
+2025-08-13 16:59:55,067 - training - INFO -   Accuracy: 0.9624
+2025-08-13 16:59:55,067 - training - INFO -   F1 (macro): 0.9625
+2025-08-13 16:59:55,067 - training - INFO -   Epoch Time: 6.68s
+2025-08-13 16:59:55,067 - training - INFO -   Average Batch Time: 0.0068s
+2025-08-13 16:59:55,067 - training - INFO -   Samples/second: 4728.7
+2025-08-13 16:59:56,419 - performance - INFO - Epoch 7 Validation Results:
+2025-08-13 16:59:56,419 - performance - INFO -   Average Loss: 12.687414
+2025-08-13 16:59:56,419 - performance - INFO -   Accuracy: 0.9560
+2025-08-13 16:59:56,419 - performance - INFO -   F1 (macro): 0.9561
+2025-08-13 16:59:56,419 - performance - INFO -   F1 (weighted): 0.9560
+2025-08-13 16:59:56,419 - performance - INFO -   Evaluation Time: 1.33s
+2025-08-13 16:59:56,419 - performance - INFO -   P-Phase - Precision: 0.9703, Recall: 0.9318, F1: 0.9507
+2025-08-13 16:59:56,419 - performance - INFO -   S-Phase - Precision: 0.9715, Recall: 0.9605, F1: 0.9660
+2025-08-13 16:59:56,419 - performance - INFO -   Noise - Precision: 0.9286, Recall: 0.9760, F1: 0.9517
+2025-08-13 16:59:56,419 - performance - INFO -   Confusion Matrix:
+[[2159   43  115]
+ [  30 2115   57]
+ [  36   19 2237]]
+2025-08-13 16:59:56,420 - training - INFO - Epoch 7 Complete:
+2025-08-13 16:59:56,420 - training - INFO -   Train Loss: 12.613343, Val Loss: 12.687414
+2025-08-13 16:59:56,420 - training - INFO -   Train Acc: 0.9624, Val Acc: 0.9560
+2025-08-13 16:59:56,420 - training - INFO -   Epoch Time: 8.06s
+2025-08-13 16:59:56,421 - performance - INFO - Post-epoch 7 system stats: {'cpu_percent': 59.2, 'memory_percent': 18.2, 'memory_used_gb': 174.12925720214844, 'memory_available_gb': 823.6023559570312, 'process_memory_mb': 1545.484375, 'gpu_memory_allocated': 0.04232025146484375, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 5}
+2025-08-13 16:59:56,421 - training - INFO - EarlyStopping counter: 1 out of 5 (Epoch 7)
+2025-08-13 16:59:56,599 - training - INFO - Epoch 8, Batch 0: loss: 12.736650  [    0/31588]
+2025-08-13 16:59:56,600 - performance - INFO - Epoch 8, Batch 0 - System stats: {'cpu_percent': 61.1, 'memory_percent': 18.3, 'memory_used_gb': 175.16216659545898, 'memory_available_gb': 822.5692596435547, 'process_memory_mb': 1545.484375, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 4}
+2025-08-13 16:59:56,834 - training - INFO - Epoch 8, Batch 20: loss: 12.352550  [ 1280/31588]
+2025-08-13 16:59:57,055 - training - INFO - Epoch 8, Batch 40: loss: 12.902337  [ 2560/31588]
+2025-08-13 16:59:57,352 - training - INFO - Epoch 8, Batch 60: loss: 12.173420  [ 3840/31588]
+2025-08-13 16:59:57,594 - training - INFO - Epoch 8, Batch 80: loss: 11.830553  [ 5120/31588]
+2025-08-13 16:59:57,840 - training - INFO - Epoch 8, Batch 100: loss: 12.596247  [ 6400/31588]
+2025-08-13 16:59:57,842 - performance - INFO - Epoch 8, Batch 100 - System stats: {'cpu_percent': 61.7, 'memory_percent': 18.3, 'memory_used_gb': 174.67087173461914, 'memory_available_gb': 823.0625419616699, 'process_memory_mb': 1545.484375, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 19}
+2025-08-13 16:59:58,091 - training - INFO - Epoch 8, Batch 120: loss: 13.163277  [ 7680/31588]
+2025-08-13 16:59:58,309 - training - INFO - Epoch 8, Batch 140: loss: 12.968859  [ 8960/31588]
+2025-08-13 16:59:58,655 - training - INFO - Epoch 8, Batch 160: loss: 13.759823  [10240/31588]
+2025-08-13 16:59:58,849 - training - INFO - Epoch 8, Batch 180: loss: 12.653846  [11520/31588]
+2025-08-13 16:59:59,108 - training - INFO - Epoch 8, Batch 200: loss: 11.899254  [12800/31588]
+2025-08-13 16:59:59,110 - performance - INFO - Epoch 8, Batch 200 - System stats: {'cpu_percent': 60.7, 'memory_percent': 17.6, 'memory_used_gb': 167.19005966186523, 'memory_available_gb': 830.5411643981934, 'process_memory_mb': 1545.484375, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 24}
+2025-08-13 16:59:59,369 - training - INFO - Epoch 8, Batch 220: loss: 12.606863  [14080/31588]
+2025-08-13 16:59:59,578 - training - INFO - Epoch 8, Batch 240: loss: 12.225327  [15360/31588]
+2025-08-13 16:59:59,820 - training - INFO - Epoch 8, Batch 260: loss: 12.746338  [16640/31588]
+2025-08-13 17:00:00,024 - training - INFO - Epoch 8, Batch 280: loss: 11.859119  [17920/31588]
+2025-08-13 17:00:00,291 - training - INFO - Epoch 8, Batch 300: loss: 12.792846  [19200/31588]
+2025-08-13 17:00:00,293 - performance - INFO - Epoch 8, Batch 300 - System stats: {'cpu_percent': 60.1, 'memory_percent': 17.5, 'memory_used_gb': 166.8689842224121, 'memory_available_gb': 830.8611602783203, 'process_memory_mb': 1545.484375, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 16}
+2025-08-13 17:00:00,493 - training - INFO - Epoch 8, Batch 320: loss: 13.175341  [20480/31588]
+2025-08-13 17:00:00,731 - training - INFO - Epoch 8, Batch 340: loss: 12.085944  [21760/31588]
+2025-08-13 17:00:00,963 - training - INFO - Epoch 8, Batch 360: loss: 12.452882  [23040/31588]
+2025-08-13 17:00:01,154 - training - INFO - Epoch 8, Batch 380: loss: 12.357017  [24320/31588]
+2025-08-13 17:00:01,474 - training - INFO - Epoch 8, Batch 400: loss: 12.784142  [25600/31588]
+2025-08-13 17:00:01,476 - performance - INFO - Epoch 8, Batch 400 - System stats: {'cpu_percent': 59.7, 'memory_percent': 17.3, 'memory_used_gb': 164.42786407470703, 'memory_available_gb': 833.301082611084, 'process_memory_mb': 1545.50390625, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 17}
+2025-08-13 17:00:01,691 - training - INFO - Epoch 8, Batch 420: loss: 13.322580  [26880/31588]
+2025-08-13 17:00:01,950 - training - INFO - Epoch 8, Batch 440: loss: 13.191032  [28160/31588]
+2025-08-13 17:00:02,139 - training - INFO - Epoch 8, Batch 460: loss: 12.807254  [29440/31588]
+2025-08-13 17:00:02,315 - training - INFO - Epoch 8, Batch 480: loss: 11.837644  [30720/31588]
+2025-08-13 17:00:02,481 - training - INFO - Epoch 8 Training Summary:
+2025-08-13 17:00:02,481 - training - INFO -   Average Loss: 12.603162
+2025-08-13 17:00:02,481 - training - INFO -   Accuracy: 0.9628
+2025-08-13 17:00:02,481 - training - INFO -   F1 (macro): 0.9629
+2025-08-13 17:00:02,481 - training - INFO -   Epoch Time: 6.03s
+2025-08-13 17:00:02,481 - training - INFO -   Average Batch Time: 0.0070s
+2025-08-13 17:00:02,481 - training - INFO -   Samples/second: 5235.1
+2025-08-13 17:00:04,089 - performance - INFO - Epoch 8 Validation Results:
+2025-08-13 17:00:04,089 - performance - INFO -   Average Loss: 12.640229
+2025-08-13 17:00:04,089 - performance - INFO -   Accuracy: 0.9571
+2025-08-13 17:00:04,089 - performance - INFO -   F1 (macro): 0.9571
+2025-08-13 17:00:04,089 - performance - INFO -   F1 (weighted): 0.9571
+2025-08-13 17:00:04,089 - performance - INFO -   Evaluation Time: 1.60s
+2025-08-13 17:00:04,089 - performance - INFO -   P-Phase - Precision: 0.9605, Recall: 0.9440, F1: 0.9521
+2025-08-13 17:00:04,089 - performance - INFO -   S-Phase - Precision: 0.9672, Recall: 0.9698, F1: 0.9685
+2025-08-13 17:00:04,089 - performance - INFO -   Noise - Precision: 0.9442, Recall: 0.9573, F1: 0.9507
+2025-08-13 17:00:04,089 - performance - INFO -   Confusion Matrix:
+[[2089   35   89]
+ [  27 2213   42]
+ [  59   40 2217]]
+2025-08-13 17:00:04,089 - training - INFO - Epoch 8 Complete:
+2025-08-13 17:00:04,089 - training - INFO -   Train Loss: 12.603162, Val Loss: 12.640229
+2025-08-13 17:00:04,089 - training - INFO -   Train Acc: 0.9628, Val Acc: 0.9571
+2025-08-13 17:00:04,090 - training - INFO -   Epoch Time: 7.67s
+2025-08-13 17:00:04,090 - performance - INFO - Post-epoch 8 system stats: {'cpu_percent': 65.5, 'memory_percent': 17.4, 'memory_used_gb': 165.22185134887695, 'memory_available_gb': 832.5005645751953, 'process_memory_mb': 1545.50390625, 'gpu_memory_allocated': 0.04232025146484375, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 5}
+2025-08-13 17:00:04,091 - training - INFO - EarlyStopping counter: 2 out of 5 (Epoch 8)
+2025-08-13 17:00:04,279 - training - INFO - Epoch 9, Batch 0: loss: 12.554865  [    0/31588]
+2025-08-13 17:00:04,280 - performance - INFO - Epoch 9, Batch 0 - System stats: {'cpu_percent': 70.6, 'memory_percent': 17.4, 'memory_used_gb': 165.3382225036621, 'memory_available_gb': 832.3827590942383, 'process_memory_mb': 1545.50390625, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 3}
+2025-08-13 17:00:04,566 - training - INFO - Epoch 9, Batch 20: loss: 12.594085  [ 1280/31588]
+2025-08-13 17:00:04,786 - training - INFO - Epoch 9, Batch 40: loss: 12.326004  [ 2560/31588]
+2025-08-13 17:00:05,142 - training - INFO - Epoch 9, Batch 60: loss: 12.662012  [ 3840/31588]
+2025-08-13 17:00:05,356 - training - INFO - Epoch 9, Batch 80: loss: 13.152574  [ 5120/31588]
+2025-08-13 17:00:05,643 - training - INFO - Epoch 9, Batch 100: loss: 12.841243  [ 6400/31588]
+2025-08-13 17:00:05,645 - performance - INFO - Epoch 9, Batch 100 - System stats: {'cpu_percent': 68.6, 'memory_percent': 17.6, 'memory_used_gb': 168.10944747924805, 'memory_available_gb': 829.5828628540039, 'process_memory_mb': 1545.50390625, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 21}
+2025-08-13 17:00:05,858 - training - INFO - Epoch 9, Batch 120: loss: 13.667729  [ 7680/31588]
+2025-08-13 17:00:06,044 - training - INFO - Epoch 9, Batch 140: loss: 13.070589  [ 8960/31588]
+2025-08-13 17:00:06,391 - training - INFO - Epoch 9, Batch 160: loss: 12.157849  [10240/31588]
+2025-08-13 17:00:06,629 - training - INFO - Epoch 9, Batch 180: loss: 12.150669  [11520/31588]
+2025-08-13 17:00:06,999 - training - INFO - Epoch 9, Batch 200: loss: 13.166106  [12800/31588]
+2025-08-13 17:00:07,000 - performance - INFO - Epoch 9, Batch 200 - System stats: {'cpu_percent': 62.5, 'memory_percent': 17.8, 'memory_used_gb': 169.39602279663086, 'memory_available_gb': 828.2906723022461, 'process_memory_mb': 1545.50390625, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 16}
+2025-08-13 17:00:07,224 - training - INFO - Epoch 9, Batch 220: loss: 12.563365  [14080/31588]
+2025-08-13 17:00:07,518 - training - INFO - Epoch 9, Batch 240: loss: 13.603672  [15360/31588]
+2025-08-13 17:00:07,717 - training - INFO - Epoch 9, Batch 260: loss: 12.202317  [16640/31588]
+2025-08-13 17:00:07,953 - training - INFO - Epoch 9, Batch 280: loss: 12.244772  [17920/31588]
+2025-08-13 17:00:08,273 - training - INFO - Epoch 9, Batch 300: loss: 12.834710  [19200/31588]
+2025-08-13 17:00:08,275 - performance - INFO - Epoch 9, Batch 300 - System stats: {'cpu_percent': 59.7, 'memory_percent': 18.0, 'memory_used_gb': 171.72384643554688, 'memory_available_gb': 825.9659805297852, 'process_memory_mb': 1545.50390625, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 23}
+2025-08-13 17:00:08,503 - training - INFO - Epoch 9, Batch 320: loss: 11.852488  [20480/31588]
+2025-08-13 17:00:08,898 - training - INFO - Epoch 9, Batch 340: loss: 12.170771  [21760/31588]
+2025-08-13 17:00:09,133 - training - INFO - Epoch 9, Batch 360: loss: 13.363879  [23040/31588]
+2025-08-13 17:00:09,562 - training - INFO - Epoch 9, Batch 380: loss: 12.274981  [24320/31588]
+2025-08-13 17:00:09,785 - training - INFO - Epoch 9, Batch 400: loss: 12.801903  [25600/31588]
+2025-08-13 17:00:09,820 - performance - INFO - Epoch 9, Batch 400 - System stats: {'cpu_percent': 57.9, 'memory_percent': 18.0, 'memory_used_gb': 171.589599609375, 'memory_available_gb': 826.1006317138672, 'process_memory_mb': 1545.50390625, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 16}
+2025-08-13 17:00:10,003 - training - INFO - Epoch 9, Batch 420: loss: 13.061097  [26880/31588]
+2025-08-13 17:00:10,337 - training - INFO - Epoch 9, Batch 440: loss: 12.780511  [28160/31588]
+2025-08-13 17:00:10,530 - training - INFO - Epoch 9, Batch 460: loss: 12.881204  [29440/31588]
+2025-08-13 17:00:10,813 - training - INFO - Epoch 9, Batch 480: loss: 12.833496  [30720/31588]
+2025-08-13 17:00:10,972 - training - INFO - Epoch 9 Training Summary:
+2025-08-13 17:00:10,972 - training - INFO -   Average Loss: 12.556807
+2025-08-13 17:00:10,972 - training - INFO -   Accuracy: 0.9653
+2025-08-13 17:00:10,972 - training - INFO -   F1 (macro): 0.9654
+2025-08-13 17:00:10,972 - training - INFO -   Epoch Time: 6.86s
+2025-08-13 17:00:10,972 - training - INFO -   Average Batch Time: 0.0053s
+2025-08-13 17:00:10,972 - training - INFO -   Samples/second: 4607.6
+2025-08-13 17:00:12,393 - performance - INFO - Epoch 9 Validation Results:
+2025-08-13 17:00:12,393 - performance - INFO -   Average Loss: 12.601312
+2025-08-13 17:00:12,393 - performance - INFO -   Accuracy: 0.9598
+2025-08-13 17:00:12,393 - performance - INFO -   F1 (macro): 0.9599
+2025-08-13 17:00:12,393 - performance - INFO -   F1 (weighted): 0.9597
+2025-08-13 17:00:12,393 - performance - INFO -   Evaluation Time: 1.41s
+2025-08-13 17:00:12,393 - performance - INFO -   P-Phase - Precision: 0.9737, Recall: 0.9359, F1: 0.9545
+2025-08-13 17:00:12,393 - performance - INFO -   S-Phase - Precision: 0.9663, Recall: 0.9711, F1: 0.9687
+2025-08-13 17:00:12,393 - performance - INFO -   Noise - Precision: 0.9408, Recall: 0.9726, F1: 0.9564
+2025-08-13 17:00:12,393 - performance - INFO -   Confusion Matrix:
+[[2148   48   99]
+ [  22 2150   42]
+ [  36   27 2239]]
+2025-08-13 17:00:12,393 - training - INFO - Epoch 9 Complete:
+2025-08-13 17:00:12,393 - training - INFO -   Train Loss: 12.556807, Val Loss: 12.601312
+2025-08-13 17:00:12,393 - training - INFO -   Train Acc: 0.9653, Val Acc: 0.9598
+2025-08-13 17:00:12,393 - training - INFO -   Epoch Time: 8.30s
+2025-08-13 17:00:12,394 - performance - INFO - Post-epoch 9 system stats: {'cpu_percent': 55.2, 'memory_percent': 18.4, 'memory_used_gb': 175.8982276916504, 'memory_available_gb': 821.7899284362793, 'process_memory_mb': 1545.50390625, 'gpu_memory_allocated': 0.04232025146484375, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 3}
+2025-08-13 17:00:12,394 - training - INFO - Validation loss decreased (12.620105 --> 12.601312). Saving model... (Epoch 9)
+2025-08-13 17:00:12,404 - training - INFO - Saving best model to best_model.pth (Epoch 9)
+2025-08-13 17:00:12,560 - training - INFO - Epoch 10, Batch 0: loss: 13.238200  [    0/31588]
+2025-08-13 17:00:12,562 - performance - INFO - Epoch 10, Batch 0 - System stats: {'cpu_percent': 54.3, 'memory_percent': 18.3, 'memory_used_gb': 175.01371383666992, 'memory_available_gb': 822.6745910644531, 'process_memory_mb': 1545.50390625, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 3}
+2025-08-13 17:00:12,807 - training - INFO - Epoch 10, Batch 20: loss: 13.158031  [ 1280/31588]
+2025-08-13 17:00:12,999 - training - INFO - Epoch 10, Batch 40: loss: 12.439383  [ 2560/31588]
+2025-08-13 17:00:13,274 - training - INFO - Epoch 10, Batch 60: loss: 12.799053  [ 3840/31588]
+2025-08-13 17:00:13,506 - training - INFO - Epoch 10, Batch 80: loss: 12.132128  [ 5120/31588]
+2025-08-13 17:00:13,744 - training - INFO - Epoch 10, Batch 100: loss: 12.260252  [ 6400/31588]
+2025-08-13 17:00:13,745 - performance - INFO - Epoch 10, Batch 100 - System stats: {'cpu_percent': 54.3, 'memory_percent': 18.4, 'memory_used_gb': 175.3738555908203, 'memory_available_gb': 822.3178367614746, 'process_memory_mb': 1545.50390625, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 22}
+2025-08-13 17:00:14,098 - training - INFO - Epoch 10, Batch 120: loss: 12.196353  [ 7680/31588]
+2025-08-13 17:00:14,329 - training - INFO - Epoch 10, Batch 140: loss: 12.672444  [ 8960/31588]
+2025-08-13 17:00:14,683 - training - INFO - Epoch 10, Batch 160: loss: 12.276532  [10240/31588]
+2025-08-13 17:00:14,874 - training - INFO - Epoch 10, Batch 180: loss: 11.856498  [11520/31588]
+2025-08-13 17:00:15,066 - training - INFO - Epoch 10, Batch 200: loss: 12.258737  [12800/31588]
+2025-08-13 17:00:15,067 - performance - INFO - Epoch 10, Batch 200 - System stats: {'cpu_percent': 54.5, 'memory_percent': 18.9, 'memory_used_gb': 180.86737442016602, 'memory_available_gb': 816.8224830627441, 'process_memory_mb': 1545.50390625, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 15}
+2025-08-13 17:00:15,400 - training - INFO - Epoch 10, Batch 220: loss: 13.491116  [14080/31588]
+2025-08-13 17:00:15,606 - training - INFO - Epoch 10, Batch 240: loss: 12.446127  [15360/31588]
+2025-08-13 17:00:15,868 - training - INFO - Epoch 10, Batch 260: loss: 11.901120  [16640/31588]
+2025-08-13 17:00:16,084 - training - INFO - Epoch 10, Batch 280: loss: 11.850398  [17920/31588]
+2025-08-13 17:00:16,356 - training - INFO - Epoch 10, Batch 300: loss: 12.835623  [19200/31588]
+2025-08-13 17:00:16,358 - performance - INFO - Epoch 10, Batch 300 - System stats: {'cpu_percent': 61.8, 'memory_percent': 18.3, 'memory_used_gb': 174.50660705566406, 'memory_available_gb': 823.1823425292969, 'process_memory_mb': 1545.50390625, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 16}
+2025-08-13 17:00:16,568 - training - INFO - Epoch 10, Batch 320: loss: 13.164939  [20480/31588]
+2025-08-13 17:00:16,781 - training - INFO - Epoch 10, Batch 340: loss: 12.231953  [21760/31588]
+2025-08-13 17:00:17,044 - training - INFO - Epoch 10, Batch 360: loss: 11.824345  [23040/31588]
+2025-08-13 17:00:17,238 - training - INFO - Epoch 10, Batch 380: loss: 11.959437  [24320/31588]
+2025-08-13 17:00:17,505 - training - INFO - Epoch 10, Batch 400: loss: 12.546562  [25600/31588]
+2025-08-13 17:00:17,507 - performance - INFO - Epoch 10, Batch 400 - System stats: {'cpu_percent': 64.8, 'memory_percent': 18.2, 'memory_used_gb': 173.97412490844727, 'memory_available_gb': 823.7124519348145, 'process_memory_mb': 1545.50390625, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 24}
+2025-08-13 17:00:17,742 - training - INFO - Epoch 10, Batch 420: loss: 12.189819  [26880/31588]
+2025-08-13 17:00:18,040 - training - INFO - Epoch 10, Batch 440: loss: 12.688984  [28160/31588]
+2025-08-13 17:00:18,217 - training - INFO - Epoch 10, Batch 460: loss: 12.472629  [29440/31588]
+2025-08-13 17:00:18,415 - training - INFO - Epoch 10, Batch 480: loss: 13.183753  [30720/31588]
+2025-08-13 17:00:18,609 - training - INFO - Epoch 10 Training Summary:
+2025-08-13 17:00:18,609 - training - INFO -   Average Loss: 12.526680
+2025-08-13 17:00:18,609 - training - INFO -   Accuracy: 0.9667
+2025-08-13 17:00:18,609 - training - INFO -   F1 (macro): 0.9667
+2025-08-13 17:00:18,609 - training - INFO -   Epoch Time: 6.15s
+2025-08-13 17:00:18,609 - training - INFO -   Average Batch Time: 0.0065s
+2025-08-13 17:00:18,609 - training - INFO -   Samples/second: 5134.5
+2025-08-13 17:00:20,257 - performance - INFO - Epoch 10 Validation Results:
+2025-08-13 17:00:20,257 - performance - INFO -   Average Loss: 12.628789
+2025-08-13 17:00:20,257 - performance - INFO -   Accuracy: 0.9584
+2025-08-13 17:00:20,257 - performance - INFO -   F1 (macro): 0.9585
+2025-08-13 17:00:20,258 - performance - INFO -   F1 (weighted): 0.9584
+2025-08-13 17:00:20,258 - performance - INFO -   Evaluation Time: 1.63s
+2025-08-13 17:00:20,258 - performance - INFO -   P-Phase - Precision: 0.9662, Recall: 0.9417, F1: 0.9538
+2025-08-13 17:00:20,258 - performance - INFO -   S-Phase - Precision: 0.9695, Recall: 0.9599, F1: 0.9647
+2025-08-13 17:00:20,258 - performance - INFO -   Noise - Precision: 0.9410, Recall: 0.9736, F1: 0.9570
+2025-08-13 17:00:20,258 - performance - INFO -   Confusion Matrix:
+[[2147   40   93]
+ [  41 2131   48]
+ [  34   27 2250]]
+2025-08-13 17:00:20,258 - training - INFO - Epoch 10 Complete:
+2025-08-13 17:00:20,258 - training - INFO -   Train Loss: 12.526680, Val Loss: 12.628789
+2025-08-13 17:00:20,258 - training - INFO -   Train Acc: 0.9667, Val Acc: 0.9584
+2025-08-13 17:00:20,258 - training - INFO -   Epoch Time: 7.85s
+2025-08-13 17:00:20,259 - performance - INFO - Post-epoch 10 system stats: {'cpu_percent': 70.3, 'memory_percent': 18.6, 'memory_used_gb': 177.6306266784668, 'memory_available_gb': 820.033878326416, 'process_memory_mb': 1545.515625, 'gpu_memory_allocated': 0.04232025146484375, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 4}
+2025-08-13 17:00:20,259 - training - INFO - EarlyStopping counter: 1 out of 5 (Epoch 10)
+2025-08-13 17:00:20,284 - debug - INFO - Checkpoint saved: checkpoint_epoch_10.pth
+2025-08-13 17:00:20,484 - training - INFO - Epoch 11, Batch 0: loss: 12.575799  [    0/31588]
+2025-08-13 17:00:20,487 - performance - INFO - Epoch 11, Batch 0 - System stats: {'cpu_percent': 71.7, 'memory_percent': 18.8, 'memory_used_gb': 179.3491554260254, 'memory_available_gb': 818.3133392333984, 'process_memory_mb': 1545.515625, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 2}
+2025-08-13 17:00:20,737 - training - INFO - Epoch 11, Batch 20: loss: 12.188187  [ 1280/31588]
+2025-08-13 17:00:20,988 - training - INFO - Epoch 11, Batch 40: loss: 12.208233  [ 2560/31588]
+2025-08-13 17:00:21,321 - training - INFO - Epoch 11, Batch 60: loss: 12.811069  [ 3840/31588]
+2025-08-13 17:00:21,536 - training - INFO - Epoch 11, Batch 80: loss: 12.537046  [ 5120/31588]
+2025-08-13 17:00:21,846 - training - INFO - Epoch 11, Batch 100: loss: 12.217001  [ 6400/31588]
+2025-08-13 17:00:21,848 - performance - INFO - Epoch 11, Batch 100 - System stats: {'cpu_percent': 73.2, 'memory_percent': 18.9, 'memory_used_gb': 180.87314224243164, 'memory_available_gb': 816.7665634155273, 'process_memory_mb': 1545.515625, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 20}
+2025-08-13 17:00:22,074 - training - INFO - Epoch 11, Batch 120: loss: 12.323077  [ 7680/31588]
+2025-08-13 17:00:22,321 - training - INFO - Epoch 11, Batch 140: loss: 12.835585  [ 8960/31588]
+2025-08-13 17:00:22,638 - training - INFO - Epoch 11, Batch 160: loss: 12.119092  [10240/31588]
+2025-08-13 17:00:22,836 - training - INFO - Epoch 11, Batch 180: loss: 12.502820  [11520/31588]
+2025-08-13 17:00:23,165 - training - INFO - Epoch 11, Batch 200: loss: 11.878414  [12800/31588]
+2025-08-13 17:00:23,167 - performance - INFO - Epoch 11, Batch 200 - System stats: {'cpu_percent': 72.7, 'memory_percent': 18.7, 'memory_used_gb': 178.56742095947266, 'memory_available_gb': 819.0520553588867, 'process_memory_mb': 1545.515625, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 18}
+2025-08-13 17:00:23,416 - training - INFO - Epoch 11, Batch 220: loss: 12.046251  [14080/31588]
+2025-08-13 17:00:23,723 - training - INFO - Epoch 11, Batch 240: loss: 12.453004  [15360/31588]
+2025-08-13 17:00:23,952 - training - INFO - Epoch 11, Batch 260: loss: 12.769720  [16640/31588]
+2025-08-13 17:00:24,161 - training - INFO - Epoch 11, Batch 280: loss: 12.817515  [17920/31588]
+2025-08-13 17:00:24,420 - training - INFO - Epoch 11, Batch 300: loss: 12.768698  [19200/31588]
+2025-08-13 17:00:24,422 - performance - INFO - Epoch 11, Batch 300 - System stats: {'cpu_percent': 72.0, 'memory_percent': 18.1, 'memory_used_gb': 172.83123397827148, 'memory_available_gb': 824.7630882263184, 'process_memory_mb': 1545.515625, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 19}
+2025-08-13 17:00:24,671 - training - INFO - Epoch 11, Batch 320: loss: 12.596086  [20480/31588]
+2025-08-13 17:00:24,916 - training - INFO - Epoch 11, Batch 340: loss: 11.841901  [21760/31588]
+2025-08-13 17:00:25,171 - training - INFO - Epoch 11, Batch 360: loss: 12.492293  [23040/31588]
+2025-08-13 17:00:25,447 - training - INFO - Epoch 11, Batch 380: loss: 12.247853  [24320/31588]
+2025-08-13 17:00:25,648 - training - INFO - Epoch 11, Batch 400: loss: 12.405274  [25600/31588]
+2025-08-13 17:00:25,650 - performance - INFO - Epoch 11, Batch 400 - System stats: {'cpu_percent': 67.4, 'memory_percent': 18.2, 'memory_used_gb': 173.30555725097656, 'memory_available_gb': 824.2813911437988, 'process_memory_mb': 1545.515625, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 16}
+2025-08-13 17:00:25,891 - training - INFO - Epoch 11, Batch 420: loss: 12.803623  [26880/31588]
+2025-08-13 17:00:26,201 - training - INFO - Epoch 11, Batch 440: loss: 12.467196  [28160/31588]
+2025-08-13 17:00:26,420 - training - INFO - Epoch 11, Batch 460: loss: 13.100220  [29440/31588]
+2025-08-13 17:00:26,725 - training - INFO - Epoch 11, Batch 480: loss: 12.526598  [30720/31588]
+2025-08-13 17:00:26,911 - training - INFO - Epoch 11 Training Summary:
+2025-08-13 17:00:26,911 - training - INFO -   Average Loss: 12.500901
+2025-08-13 17:00:26,911 - training - INFO -   Accuracy: 0.9680
+2025-08-13 17:00:26,911 - training - INFO -   F1 (macro): 0.9681
+2025-08-13 17:00:26,911 - training - INFO -   Epoch Time: 6.58s
+2025-08-13 17:00:26,911 - training - INFO -   Average Batch Time: 0.0075s
+2025-08-13 17:00:26,911 - training - INFO -   Samples/second: 4798.4
+2025-08-13 17:00:28,448 - performance - INFO - Epoch 11 Validation Results:
+2025-08-13 17:00:28,448 - performance - INFO -   Average Loss: 12.607048
+2025-08-13 17:00:28,448 - performance - INFO -   Accuracy: 0.9590
+2025-08-13 17:00:28,448 - performance - INFO -   F1 (macro): 0.9590
+2025-08-13 17:00:28,448 - performance - INFO -   F1 (weighted): 0.9590
+2025-08-13 17:00:28,448 - performance - INFO -   Evaluation Time: 1.52s
+2025-08-13 17:00:28,448 - performance - INFO -   P-Phase - Precision: 0.9668, Recall: 0.9374, F1: 0.9519
+2025-08-13 17:00:28,448 - performance - INFO -   S-Phase - Precision: 0.9696, Recall: 0.9627, F1: 0.9662
+2025-08-13 17:00:28,448 - performance - INFO -   Noise - Precision: 0.9425, Recall: 0.9758, F1: 0.9588
+2025-08-13 17:00:28,449 - performance - INFO -   Confusion Matrix:
+[[2067   45   93]
+ [  37 2171   47]
+ [  34   23 2294]]
+2025-08-13 17:00:28,449 - training - INFO - Epoch 11 Complete:
+2025-08-13 17:00:28,449 - training - INFO -   Train Loss: 12.500901, Val Loss: 12.607048
+2025-08-13 17:00:28,449 - training - INFO -   Train Acc: 0.9680, Val Acc: 0.9590
+2025-08-13 17:00:28,449 - training - INFO -   Epoch Time: 8.16s
+2025-08-13 17:00:28,450 - performance - INFO - Post-epoch 11 system stats: {'cpu_percent': 68.9, 'memory_percent': 18.5, 'memory_used_gb': 176.46516036987305, 'memory_available_gb': 821.1211090087891, 'process_memory_mb': 1545.515625, 'gpu_memory_allocated': 0.04232025146484375, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 4}
+2025-08-13 17:00:28,450 - training - INFO - EarlyStopping counter: 2 out of 5 (Epoch 11)
+2025-08-13 17:00:28,619 - training - INFO - Epoch 12, Batch 0: loss: 12.486962  [    0/31588]
+2025-08-13 17:00:28,620 - performance - INFO - Epoch 12, Batch 0 - System stats: {'cpu_percent': 71.7, 'memory_percent': 18.5, 'memory_used_gb': 176.73540878295898, 'memory_available_gb': 820.8522911071777, 'process_memory_mb': 1545.515625, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 4}
+2025-08-13 17:00:28,928 - training - INFO - Epoch 12, Batch 20: loss: 12.993979  [ 1280/31588]
+2025-08-13 17:00:29,174 - training - INFO - Epoch 12, Batch 40: loss: 12.231161  [ 2560/31588]
+2025-08-13 17:00:29,483 - training - INFO - Epoch 12, Batch 60: loss: 13.388922  [ 3840/31588]
+2025-08-13 17:00:29,750 - training - INFO - Epoch 12, Batch 80: loss: 12.681725  [ 5120/31588]
+2025-08-13 17:00:30,048 - training - INFO - Epoch 12, Batch 100: loss: 12.221364  [ 6400/31588]
+2025-08-13 17:00:30,049 - performance - INFO - Epoch 12, Batch 100 - System stats: {'cpu_percent': 73.0, 'memory_percent': 18.6, 'memory_used_gb': 177.53276824951172, 'memory_available_gb': 820.053825378418, 'process_memory_mb': 1545.515625, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 16}
+2025-08-13 17:00:30,297 - training - INFO - Epoch 12, Batch 120: loss: 12.131612  [ 7680/31588]
+2025-08-13 17:00:30,552 - training - INFO - Epoch 12, Batch 140: loss: 12.294881  [ 8960/31588]
+2025-08-13 17:00:30,823 - training - INFO - Epoch 12, Batch 160: loss: 12.501954  [10240/31588]
+2025-08-13 17:00:31,052 - training - INFO - Epoch 12, Batch 180: loss: 11.941977  [11520/31588]
+2025-08-13 17:00:31,401 - training - INFO - Epoch 12, Batch 200: loss: 13.463104  [12800/31588]
+2025-08-13 17:00:31,403 - performance - INFO - Epoch 12, Batch 200 - System stats: {'cpu_percent': 73.2, 'memory_percent': 18.9, 'memory_used_gb': 180.37707901000977, 'memory_available_gb': 817.2081565856934, 'process_memory_mb': 1545.515625, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 16}
+2025-08-13 17:00:31,619 - training - INFO - Epoch 12, Batch 220: loss: 12.448604  [14080/31588]
+2025-08-13 17:00:31,919 - training - INFO - Epoch 12, Batch 240: loss: 11.853160  [15360/31588]
+2025-08-13 17:00:32,182 - training - INFO - Epoch 12, Batch 260: loss: 12.872607  [16640/31588]
+2025-08-13 17:00:32,434 - training - INFO - Epoch 12, Batch 280: loss: 12.561761  [17920/31588]
+2025-08-13 17:00:32,754 - training - INFO - Epoch 12, Batch 300: loss: 12.150373  [19200/31588]
+2025-08-13 17:00:32,756 - performance - INFO - Epoch 12, Batch 300 - System stats: {'cpu_percent': 72.8, 'memory_percent': 18.7, 'memory_used_gb': 178.9902801513672, 'memory_available_gb': 818.5977554321289, 'process_memory_mb': 1545.515625, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 16}
+2025-08-13 17:00:33,021 - training - INFO - Epoch 12, Batch 320: loss: 12.886150  [20480/31588]
+2025-08-13 17:00:33,257 - training - INFO - Epoch 12, Batch 340: loss: 12.549133  [21760/31588]
+2025-08-13 17:00:33,544 - training - INFO - Epoch 12, Batch 360: loss: 12.244054  [23040/31588]
+2025-08-13 17:00:33,770 - training - INFO - Epoch 12, Batch 380: loss: 11.860408  [24320/31588]
+2025-08-13 17:00:34,110 - training - INFO - Epoch 12, Batch 400: loss: 12.530837  [25600/31588]
+2025-08-13 17:00:34,112 - performance - INFO - Epoch 12, Batch 400 - System stats: {'cpu_percent': 72.4, 'memory_percent': 18.4, 'memory_used_gb': 175.9871597290039, 'memory_available_gb': 821.5960159301758, 'process_memory_mb': 1545.515625, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 16}
+2025-08-13 17:00:34,372 - training - INFO - Epoch 12, Batch 420: loss: 14.555877  [26880/31588]
+2025-08-13 17:00:34,624 - training - INFO - Epoch 12, Batch 440: loss: 12.140851  [28160/31588]
+2025-08-13 17:00:34,920 - training - INFO - Epoch 12, Batch 460: loss: 12.166030  [29440/31588]
+2025-08-13 17:00:35,172 - training - INFO - Epoch 12, Batch 480: loss: 12.402219  [30720/31588]
+2025-08-13 17:00:35,408 - training - INFO - Epoch 12 Training Summary:
+2025-08-13 17:00:35,408 - training - INFO -   Average Loss: 12.472914
+2025-08-13 17:00:35,408 - training - INFO -   Accuracy: 0.9694
+2025-08-13 17:00:35,408 - training - INFO -   F1 (macro): 0.9695
+2025-08-13 17:00:35,408 - training - INFO -   Epoch Time: 6.91s
+2025-08-13 17:00:35,408 - training - INFO -   Average Batch Time: 0.0076s
+2025-08-13 17:00:35,408 - training - INFO -   Samples/second: 4572.4
+2025-08-13 17:00:37,059 - performance - INFO - Epoch 12 Validation Results:
+2025-08-13 17:00:37,060 - performance - INFO -   Average Loss: 12.631329
+2025-08-13 17:00:37,060 - performance - INFO -   Accuracy: 0.9589
+2025-08-13 17:00:37,060 - performance - INFO -   F1 (macro): 0.9590
+2025-08-13 17:00:37,060 - performance - INFO -   F1 (weighted): 0.9590
+2025-08-13 17:00:37,060 - performance - INFO -   Evaluation Time: 1.63s
+2025-08-13 17:00:37,060 - performance - INFO -   P-Phase - Precision: 0.9653, Recall: 0.9440, F1: 0.9545
+2025-08-13 17:00:37,060 - performance - INFO -   S-Phase - Precision: 0.9810, Recall: 0.9614, F1: 0.9711
+2025-08-13 17:00:37,060 - performance - INFO -   Noise - Precision: 0.9313, Recall: 0.9723, F1: 0.9513
+2025-08-13 17:00:37,060 - performance - INFO -   Confusion Matrix:
+[[2225   22  110]
+ [  39 2165   48]
+ [  41   20 2141]]
+2025-08-13 17:00:37,061 - training - INFO - Epoch 12 Complete:
+2025-08-13 17:00:37,061 - training - INFO -   Train Loss: 12.472914, Val Loss: 12.631329
+2025-08-13 17:00:37,061 - training - INFO -   Train Acc: 0.9694, Val Acc: 0.9589
+2025-08-13 17:00:37,061 - training - INFO -   Epoch Time: 8.61s
+2025-08-13 17:00:37,063 - performance - INFO - Post-epoch 12 system stats: {'cpu_percent': 68.8, 'memory_percent': 19.0, 'memory_used_gb': 181.59516143798828, 'memory_available_gb': 815.9838027954102, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.04232025146484375, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 4}
+2025-08-13 17:00:37,063 - training - INFO - EarlyStopping counter: 3 out of 5 (Epoch 12)
+2025-08-13 17:00:37,273 - training - INFO - Epoch 13, Batch 0: loss: 11.935548  [    0/31588]
+2025-08-13 17:00:37,275 - performance - INFO - Epoch 13, Batch 0 - System stats: {'cpu_percent': 71.4, 'memory_percent': 19.0, 'memory_used_gb': 181.58489608764648, 'memory_available_gb': 815.9989624023438, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 4}
+2025-08-13 17:00:37,547 - training - INFO - Epoch 13, Batch 20: loss: 12.827378  [ 1280/31588]
+2025-08-13 17:00:37,781 - training - INFO - Epoch 13, Batch 40: loss: 13.264787  [ 2560/31588]
+2025-08-13 17:00:38,087 - training - INFO - Epoch 13, Batch 60: loss: 11.852225  [ 3840/31588]
+2025-08-13 17:00:38,303 - training - INFO - Epoch 13, Batch 80: loss: 11.844091  [ 5120/31588]
+2025-08-13 17:00:38,632 - training - INFO - Epoch 13, Batch 100: loss: 12.021079  [ 6400/31588]
+2025-08-13 17:00:38,634 - performance - INFO - Epoch 13, Batch 100 - System stats: {'cpu_percent': 70.5, 'memory_percent': 19.0, 'memory_used_gb': 181.87541961669922, 'memory_available_gb': 815.7097511291504, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 16}
+2025-08-13 17:00:38,893 - training - INFO - Epoch 13, Batch 120: loss: 12.465199  [ 7680/31588]
+2025-08-13 17:00:39,158 - training - INFO - Epoch 13, Batch 140: loss: 12.978038  [ 8960/31588]
+2025-08-13 17:00:39,448 - training - INFO - Epoch 13, Batch 160: loss: 12.409462  [10240/31588]
+2025-08-13 17:00:39,690 - training - INFO - Epoch 13, Batch 180: loss: 11.944731  [11520/31588]
+2025-08-13 17:00:39,906 - training - INFO - Epoch 13, Batch 200: loss: 13.163710  [12800/31588]
+2025-08-13 17:00:39,908 - performance - INFO - Epoch 13, Batch 200 - System stats: {'cpu_percent': 70.6, 'memory_percent': 18.9, 'memory_used_gb': 180.1857147216797, 'memory_available_gb': 817.4018707275391, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 16}
+2025-08-13 17:00:40,089 - training - INFO - Epoch 13, Batch 220: loss: 12.532585  [14080/31588]
+2025-08-13 17:00:40,377 - training - INFO - Epoch 13, Batch 240: loss: 12.557711  [15360/31588]
+2025-08-13 17:00:40,597 - training - INFO - Epoch 13, Batch 260: loss: 12.011888  [16640/31588]
+2025-08-13 17:00:40,790 - training - INFO - Epoch 13, Batch 280: loss: 12.608187  [17920/31588]
+2025-08-13 17:00:41,047 - training - INFO - Epoch 13, Batch 300: loss: 14.068845  [19200/31588]
+2025-08-13 17:00:41,049 - performance - INFO - Epoch 13, Batch 300 - System stats: {'cpu_percent': 66.4, 'memory_percent': 18.6, 'memory_used_gb': 177.8009262084961, 'memory_available_gb': 819.7849388122559, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 21}
+2025-08-13 17:00:41,342 - training - INFO - Epoch 13, Batch 320: loss: 12.088072  [20480/31588]
+2025-08-13 17:00:41,568 - training - INFO - Epoch 13, Batch 340: loss: 12.309945  [21760/31588]
+2025-08-13 17:00:41,868 - training - INFO - Epoch 13, Batch 360: loss: 12.517798  [23040/31588]
+2025-08-13 17:00:42,085 - training - INFO - Epoch 13, Batch 380: loss: 12.035499  [24320/31588]
+2025-08-13 17:00:42,279 - training - INFO - Epoch 13, Batch 400: loss: 12.595251  [25600/31588]
+2025-08-13 17:00:42,281 - performance - INFO - Epoch 13, Batch 400 - System stats: {'cpu_percent': 64.7, 'memory_percent': 18.3, 'memory_used_gb': 174.83038711547852, 'memory_available_gb': 822.757884979248, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 21}
+2025-08-13 17:00:42,535 - training - INFO - Epoch 13, Batch 420: loss: 12.484355  [26880/31588]
+2025-08-13 17:00:42,715 - training - INFO - Epoch 13, Batch 440: loss: 13.581720  [28160/31588]
+2025-08-13 17:00:42,963 - training - INFO - Epoch 13, Batch 460: loss: 12.176391  [29440/31588]
+2025-08-13 17:00:43,111 - training - INFO - Epoch 13, Batch 480: loss: 12.194671  [30720/31588]
+2025-08-13 17:00:43,267 - training - INFO - Epoch 13 Training Summary:
+2025-08-13 17:00:43,267 - training - INFO -   Average Loss: 12.465533
+2025-08-13 17:00:43,268 - training - INFO -   Accuracy: 0.9691
+2025-08-13 17:00:43,268 - training - INFO -   F1 (macro): 0.9691
+2025-08-13 17:00:43,268 - training - INFO -   Epoch Time: 6.16s
+2025-08-13 17:00:43,268 - training - INFO -   Average Batch Time: 0.0066s
+2025-08-13 17:00:43,269 - training - INFO -   Samples/second: 5124.6
+2025-08-13 17:00:44,844 - performance - INFO - Epoch 13 Validation Results:
+2025-08-13 17:00:44,844 - performance - INFO -   Average Loss: 12.577297
+2025-08-13 17:00:44,844 - performance - INFO -   Accuracy: 0.9605
+2025-08-13 17:00:44,844 - performance - INFO -   F1 (macro): 0.9605
+2025-08-13 17:00:44,844 - performance - INFO -   F1 (weighted): 0.9605
+2025-08-13 17:00:44,844 - performance - INFO -   Evaluation Time: 1.56s
+2025-08-13 17:00:44,844 - performance - INFO -   P-Phase - Precision: 0.9658, Recall: 0.9429, F1: 0.9542
+2025-08-13 17:00:44,844 - performance - INFO -   S-Phase - Precision: 0.9751, Recall: 0.9574, F1: 0.9662
+2025-08-13 17:00:44,845 - performance - INFO -   Noise - Precision: 0.9429, Recall: 0.9801, F1: 0.9611
+2025-08-13 17:00:44,845 - performance - INFO -   Confusion Matrix:
+[[2115   37   91]
+ [  45 2114   49]
+ [  30   17 2313]]
+2025-08-13 17:00:44,845 - training - INFO - Epoch 13 Complete:
+2025-08-13 17:00:44,986 - training - INFO -   Train Loss: 12.465533, Val Loss: 12.577297
+2025-08-13 17:00:44,986 - training - INFO -   Train Acc: 0.9691, Val Acc: 0.9605
+2025-08-13 17:00:44,986 - training - INFO -   Epoch Time: 7.78s
+2025-08-13 17:00:44,988 - performance - INFO - Post-epoch 13 system stats: {'cpu_percent': 60.0, 'memory_percent': 18.5, 'memory_used_gb': 177.08050918579102, 'memory_available_gb': 820.5066528320312, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.04232025146484375, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 2}
+2025-08-13 17:00:44,988 - training - INFO - Validation loss decreased (12.601312 --> 12.577297). Saving model... (Epoch 13)
+2025-08-13 17:00:45,002 - training - INFO - Saving best model to best_model.pth (Epoch 13)
+2025-08-13 17:00:45,185 - training - INFO - Epoch 14, Batch 0: loss: 12.134212  [    0/31588]
+2025-08-13 17:00:45,186 - performance - INFO - Epoch 14, Batch 0 - System stats: {'cpu_percent': 68.9, 'memory_percent': 18.7, 'memory_used_gb': 178.53749465942383, 'memory_available_gb': 819.0517883300781, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 1}
+2025-08-13 17:00:45,461 - training - INFO - Epoch 14, Batch 20: loss: 12.816730  [ 1280/31588]
+2025-08-13 17:00:45,688 - training - INFO - Epoch 14, Batch 40: loss: 12.538515  [ 2560/31588]
+2025-08-13 17:00:45,954 - training - INFO - Epoch 14, Batch 60: loss: 13.252605  [ 3840/31588]
+2025-08-13 17:00:46,279 - training - INFO - Epoch 14, Batch 80: loss: 12.377542  [ 5120/31588]
+2025-08-13 17:00:46,471 - training - INFO - Epoch 14, Batch 100: loss: 12.017627  [ 6400/31588]
+2025-08-13 17:00:46,473 - performance - INFO - Epoch 14, Batch 100 - System stats: {'cpu_percent': 70.3, 'memory_percent': 18.7, 'memory_used_gb': 178.33283615112305, 'memory_available_gb': 819.2554817199707, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 21}
+2025-08-13 17:00:46,732 - training - INFO - Epoch 14, Batch 120: loss: 12.181665  [ 7680/31588]
+2025-08-13 17:00:46,938 - training - INFO - Epoch 14, Batch 140: loss: 12.223894  [ 8960/31588]
+2025-08-13 17:00:47,277 - training - INFO - Epoch 14, Batch 160: loss: 12.326118  [10240/31588]
+2025-08-13 17:00:47,515 - training - INFO - Epoch 14, Batch 180: loss: 12.401079  [11520/31588]
+2025-08-13 17:00:47,842 - training - INFO - Epoch 14, Batch 200: loss: 11.866573  [12800/31588]
+2025-08-13 17:00:47,844 - performance - INFO - Epoch 14, Batch 200 - System stats: {'cpu_percent': 70.5, 'memory_percent': 19.0, 'memory_used_gb': 181.36710739135742, 'memory_available_gb': 816.2217559814453, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 18}
+2025-08-13 17:00:48,062 - training - INFO - Epoch 14, Batch 220: loss: 12.008371  [14080/31588]
+2025-08-13 17:00:48,282 - training - INFO - Epoch 14, Batch 240: loss: 13.135737  [15360/31588]
+2025-08-13 17:00:48,604 - training - INFO - Epoch 14, Batch 260: loss: 12.294665  [16640/31588]
+2025-08-13 17:00:48,826 - training - INFO - Epoch 14, Batch 280: loss: 13.191003  [17920/31588]
+2025-08-13 17:00:49,120 - training - INFO - Epoch 14, Batch 300: loss: 13.633246  [19200/31588]
+2025-08-13 17:00:49,122 - performance - INFO - Epoch 14, Batch 300 - System stats: {'cpu_percent': 70.3, 'memory_percent': 18.6, 'memory_used_gb': 177.88882446289062, 'memory_available_gb': 819.6932373046875, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 18}
+2025-08-13 17:00:49,332 - training - INFO - Epoch 14, Batch 320: loss: 12.460888  [20480/31588]
+2025-08-13 17:00:49,576 - training - INFO - Epoch 14, Batch 340: loss: 12.183256  [21760/31588]
+2025-08-13 17:00:49,816 - training - INFO - Epoch 14, Batch 360: loss: 13.170520  [23040/31588]
+2025-08-13 17:00:50,118 - training - INFO - Epoch 14, Batch 380: loss: 12.046955  [24320/31588]
+2025-08-13 17:00:50,353 - training - INFO - Epoch 14, Batch 400: loss: 12.668267  [25600/31588]
+2025-08-13 17:00:50,355 - performance - INFO - Epoch 14, Batch 400 - System stats: {'cpu_percent': 72.5, 'memory_percent': 18.6, 'memory_used_gb': 177.50654983520508, 'memory_available_gb': 820.0794563293457, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 18}
+2025-08-13 17:00:50,575 - training - INFO - Epoch 14, Batch 420: loss: 12.551303  [26880/31588]
+2025-08-13 17:00:50,878 - training - INFO - Epoch 14, Batch 440: loss: 12.589435  [28160/31588]
+2025-08-13 17:00:51,163 - training - INFO - Epoch 14, Batch 460: loss: 12.961172  [29440/31588]
+2025-08-13 17:00:51,416 - training - INFO - Epoch 14, Batch 480: loss: 13.060911  [30720/31588]
+2025-08-13 17:00:51,651 - training - INFO - Epoch 14 Training Summary:
+2025-08-13 17:00:51,652 - training - INFO -   Average Loss: 12.426035
+2025-08-13 17:00:51,652 - training - INFO -   Accuracy: 0.9717
+2025-08-13 17:00:51,652 - training - INFO -   F1 (macro): 0.9717
+2025-08-13 17:00:51,652 - training - INFO -   Epoch Time: 6.59s
+2025-08-13 17:00:51,652 - training - INFO -   Average Batch Time: 0.0075s
+2025-08-13 17:00:51,652 - training - INFO -   Samples/second: 4796.0
+2025-08-13 17:00:53,452 - performance - INFO - Epoch 14 Validation Results:
+2025-08-13 17:00:53,452 - performance - INFO -   Average Loss: 12.653681
+2025-08-13 17:00:53,452 - performance - INFO -   Accuracy: 0.9579
+2025-08-13 17:00:53,452 - performance - INFO -   F1 (macro): 0.9579
+2025-08-13 17:00:53,452 - performance - INFO -   F1 (weighted): 0.9579
+2025-08-13 17:00:53,453 - performance - INFO -   Evaluation Time: 1.78s
+2025-08-13 17:00:53,453 - performance - INFO -   P-Phase - Precision: 0.9539, Recall: 0.9539, F1: 0.9539
+2025-08-13 17:00:53,453 - performance - INFO -   S-Phase - Precision: 0.9734, Recall: 0.9577, F1: 0.9655
+2025-08-13 17:00:53,453 - performance - INFO -   Noise - Precision: 0.9465, Recall: 0.9619, F1: 0.9541
+2025-08-13 17:00:53,453 - performance - INFO -   Confusion Matrix:
+[[2132   31   72]
+ [  45 2198   52]
+ [  58   29 2194]]
+2025-08-13 17:00:53,453 - training - INFO - Epoch 14 Complete:
+2025-08-13 17:00:53,453 - training - INFO -   Train Loss: 12.426035, Val Loss: 12.653681
+2025-08-13 17:00:53,453 - training - INFO -   Train Acc: 0.9717, Val Acc: 0.9579
+2025-08-13 17:00:53,453 - training - INFO -   Epoch Time: 8.44s
+2025-08-13 17:00:53,455 - performance - INFO - Post-epoch 14 system stats: {'cpu_percent': 69.5, 'memory_percent': 19.0, 'memory_used_gb': 181.79258728027344, 'memory_available_gb': 815.7926330566406, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.04232025146484375, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 3}
+2025-08-13 17:00:53,455 - training - INFO - EarlyStopping counter: 1 out of 5 (Epoch 14)
+2025-08-13 17:00:53,676 - training - INFO - Epoch 15, Batch 0: loss: 13.080564  [    0/31588]
+2025-08-13 17:00:53,678 - performance - INFO - Epoch 15, Batch 0 - System stats: {'cpu_percent': 71.1, 'memory_percent': 19.1, 'memory_used_gb': 182.3640594482422, 'memory_available_gb': 815.2217254638672, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 1}
+2025-08-13 17:00:53,910 - training - INFO - Epoch 15, Batch 20: loss: 11.841428  [ 1280/31588]
+2025-08-13 17:00:54,121 - training - INFO - Epoch 15, Batch 40: loss: 12.238845  [ 2560/31588]
+2025-08-13 17:00:54,441 - training - INFO - Epoch 15, Batch 60: loss: 12.545741  [ 3840/31588]
+2025-08-13 17:00:54,816 - training - INFO - Epoch 15, Batch 80: loss: 11.875283  [ 5120/31588]
+2025-08-13 17:00:55,083 - training - INFO - Epoch 15, Batch 100: loss: 12.946181  [ 6400/31588]
+2025-08-13 17:00:55,085 - performance - INFO - Epoch 15, Batch 100 - System stats: {'cpu_percent': 72.0, 'memory_percent': 18.9, 'memory_used_gb': 180.8591194152832, 'memory_available_gb': 816.7230644226074, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 6}
+2025-08-13 17:00:55,373 - training - INFO - Epoch 15, Batch 120: loss: 12.326121  [ 7680/31588]
+2025-08-13 17:00:55,703 - training - INFO - Epoch 15, Batch 140: loss: 12.245311  [ 8960/31588]
+2025-08-13 17:00:55,939 - training - INFO - Epoch 15, Batch 160: loss: 12.613940  [10240/31588]
+2025-08-13 17:00:56,291 - training - INFO - Epoch 15, Batch 180: loss: 12.915620  [11520/31588]
+2025-08-13 17:00:56,526 - training - INFO - Epoch 15, Batch 200: loss: 12.548876  [12800/31588]
+2025-08-13 17:00:56,528 - performance - INFO - Epoch 15, Batch 200 - System stats: {'cpu_percent': 71.0, 'memory_percent': 18.7, 'memory_used_gb': 179.0502586364746, 'memory_available_gb': 818.5328750610352, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 16}
+2025-08-13 17:00:56,840 - training - INFO - Epoch 15, Batch 220: loss: 12.264268  [14080/31588]
+2025-08-13 17:00:57,074 - training - INFO - Epoch 15, Batch 240: loss: 12.121694  [15360/31588]
+2025-08-13 17:00:57,292 - training - INFO - Epoch 15, Batch 260: loss: 12.083442  [16640/31588]
+2025-08-13 17:00:57,581 - training - INFO - Epoch 15, Batch 280: loss: 11.914124  [17920/31588]
+2025-08-13 17:00:57,828 - training - INFO - Epoch 15, Batch 300: loss: 11.846378  [19200/31588]
+2025-08-13 17:00:57,830 - performance - INFO - Epoch 15, Batch 300 - System stats: {'cpu_percent': 67.8, 'memory_percent': 18.7, 'memory_used_gb': 178.23093795776367, 'memory_available_gb': 819.3581123352051, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 20}
+2025-08-13 17:00:58,184 - training - INFO - Epoch 15, Batch 320: loss: 12.867932  [20480/31588]
+2025-08-13 17:00:58,403 - training - INFO - Epoch 15, Batch 340: loss: 12.175180  [21760/31588]
+2025-08-13 17:00:58,699 - training - INFO - Epoch 15, Batch 360: loss: 11.998448  [23040/31588]
+2025-08-13 17:00:58,900 - training - INFO - Epoch 15, Batch 380: loss: 12.144835  [24320/31588]
+2025-08-13 17:00:59,114 - training - INFO - Epoch 15, Batch 400: loss: 12.214595  [25600/31588]
+2025-08-13 17:00:59,116 - performance - INFO - Epoch 15, Batch 400 - System stats: {'cpu_percent': 68.1, 'memory_percent': 17.8, 'memory_used_gb': 169.42998123168945, 'memory_available_gb': 828.1536445617676, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 16}
+2025-08-13 17:00:59,386 - training - INFO - Epoch 15, Batch 420: loss: 12.676279  [26880/31588]
+2025-08-13 17:00:59,592 - training - INFO - Epoch 15, Batch 440: loss: 12.174858  [28160/31588]
+2025-08-13 17:00:59,845 - training - INFO - Epoch 15, Batch 460: loss: 12.486158  [29440/31588]
+2025-08-13 17:01:00,030 - training - INFO - Epoch 15, Batch 480: loss: 12.668122  [30720/31588]
+2025-08-13 17:01:00,212 - training - INFO - Epoch 15 Training Summary:
+2025-08-13 17:01:00,212 - training - INFO -   Average Loss: 12.384769
+2025-08-13 17:01:00,212 - training - INFO -   Accuracy: 0.9735
+2025-08-13 17:01:00,212 - training - INFO -   F1 (macro): 0.9735
+2025-08-13 17:01:00,212 - training - INFO -   Epoch Time: 6.72s
+2025-08-13 17:01:00,212 - training - INFO -   Average Batch Time: 0.0067s
+2025-08-13 17:01:00,212 - training - INFO -   Samples/second: 4699.2
+2025-08-13 17:01:01,721 - performance - INFO - Epoch 15 Validation Results:
+2025-08-13 17:01:01,721 - performance - INFO -   Average Loss: 12.606228
+2025-08-13 17:01:01,722 - performance - INFO -   Accuracy: 0.9583
+2025-08-13 17:01:01,722 - performance - INFO -   F1 (macro): 0.9583
+2025-08-13 17:01:01,722 - performance - INFO -   F1 (weighted): 0.9583
+2025-08-13 17:01:01,722 - performance - INFO -   Evaluation Time: 1.49s
+2025-08-13 17:01:01,722 - performance - INFO -   P-Phase - Precision: 0.9630, Recall: 0.9468, F1: 0.9548
+2025-08-13 17:01:01,722 - performance - INFO -   S-Phase - Precision: 0.9726, Recall: 0.9570, F1: 0.9648
+2025-08-13 17:01:01,722 - performance - INFO -   Noise - Precision: 0.9399, Recall: 0.9712, F1: 0.9553
+2025-08-13 17:01:01,722 - performance - INFO -   Confusion Matrix:
+[[2134   41   79]
+ [  38 2204   61]
+ [  44   21 2189]]
+2025-08-13 17:01:01,722 - training - INFO - Epoch 15 Complete:
+2025-08-13 17:01:01,722 - training - INFO -   Train Loss: 12.384769, Val Loss: 12.606228
+2025-08-13 17:01:01,723 - training - INFO -   Train Acc: 0.9735, Val Acc: 0.9583
+2025-08-13 17:01:01,723 - training - INFO -   Epoch Time: 8.27s
+2025-08-13 17:01:01,724 - performance - INFO - Post-epoch 15 system stats: {'cpu_percent': 67.7, 'memory_percent': 17.9, 'memory_used_gb': 170.1726531982422, 'memory_available_gb': 827.4176292419434, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.04232025146484375, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 4}
+2025-08-13 17:01:01,724 - training - INFO - EarlyStopping counter: 2 out of 5 (Epoch 15)
+2025-08-13 17:01:01,960 - training - INFO - Epoch 16, Batch 0: loss: 12.506921  [    0/31588]
+2025-08-13 17:01:01,963 - performance - INFO - Epoch 16, Batch 0 - System stats: {'cpu_percent': 70.8, 'memory_percent': 17.9, 'memory_used_gb': 170.16349411010742, 'memory_available_gb': 827.4238166809082, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 2}
+2025-08-13 17:01:02,197 - training - INFO - Epoch 16, Batch 20: loss: 11.870562  [ 1280/31588]
+2025-08-13 17:01:02,427 - training - INFO - Epoch 16, Batch 40: loss: 11.942080  [ 2560/31588]
+2025-08-13 17:01:02,750 - training - INFO - Epoch 16, Batch 60: loss: 12.160542  [ 3840/31588]
+2025-08-13 17:01:02,987 - training - INFO - Epoch 16, Batch 80: loss: 12.429311  [ 5120/31588]
+2025-08-13 17:01:03,311 - training - INFO - Epoch 16, Batch 100: loss: 12.502420  [ 6400/31588]
+2025-08-13 17:01:03,313 - performance - INFO - Epoch 16, Batch 100 - System stats: {'cpu_percent': 71.1, 'memory_percent': 18.1, 'memory_used_gb': 172.2020492553711, 'memory_available_gb': 825.3838348388672, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 16}
+2025-08-13 17:01:03,526 - training - INFO - Epoch 16, Batch 120: loss: 11.846363  [ 7680/31588]
+2025-08-13 17:01:03,778 - training - INFO - Epoch 16, Batch 140: loss: 12.563726  [ 8960/31588]
+2025-08-13 17:01:04,104 - training - INFO - Epoch 16, Batch 160: loss: 12.598668  [10240/31588]
+2025-08-13 17:01:04,354 - training - INFO - Epoch 16, Batch 180: loss: 12.152879  [11520/31588]
+2025-08-13 17:01:04,604 - training - INFO - Epoch 16, Batch 200: loss: 12.270072  [12800/31588]
+2025-08-13 17:01:04,606 - performance - INFO - Epoch 16, Batch 200 - System stats: {'cpu_percent': 70.5, 'memory_percent': 18.1, 'memory_used_gb': 172.32830429077148, 'memory_available_gb': 825.2542266845703, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 16}
+2025-08-13 17:01:04,920 - training - INFO - Epoch 16, Batch 220: loss: 12.843688  [14080/31588]
+2025-08-13 17:01:05,145 - training - INFO - Epoch 16, Batch 240: loss: 11.862077  [15360/31588]
+2025-08-13 17:01:05,476 - training - INFO - Epoch 16, Batch 260: loss: 12.664128  [16640/31588]
+2025-08-13 17:01:05,721 - training - INFO - Epoch 16, Batch 280: loss: 12.761311  [17920/31588]
+2025-08-13 17:01:06,038 - training - INFO - Epoch 16, Batch 300: loss: 12.432671  [19200/31588]
+2025-08-13 17:01:06,040 - performance - INFO - Epoch 16, Batch 300 - System stats: {'cpu_percent': 70.9, 'memory_percent': 18.4, 'memory_used_gb': 175.7672462463379, 'memory_available_gb': 821.8203201293945, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 16}
+2025-08-13 17:01:06,282 - training - INFO - Epoch 16, Batch 320: loss: 12.591761  [20480/31588]
+2025-08-13 17:01:06,544 - training - INFO - Epoch 16, Batch 340: loss: 12.795347  [21760/31588]
+2025-08-13 17:01:06,848 - training - INFO - Epoch 16, Batch 360: loss: 12.263108  [23040/31588]
+2025-08-13 17:01:07,088 - training - INFO - Epoch 16, Batch 380: loss: 12.171720  [24320/31588]
+2025-08-13 17:01:07,394 - training - INFO - Epoch 16, Batch 400: loss: 12.371854  [25600/31588]
+2025-08-13 17:01:07,396 - performance - INFO - Epoch 16, Batch 400 - System stats: {'cpu_percent': 69.0, 'memory_percent': 18.4, 'memory_used_gb': 175.4196014404297, 'memory_available_gb': 822.165340423584, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 18}
+2025-08-13 17:01:07,609 - training - INFO - Epoch 16, Batch 420: loss: 11.891557  [26880/31588]
+2025-08-13 17:01:07,885 - training - INFO - Epoch 16, Batch 440: loss: 14.036929  [28160/31588]
+2025-08-13 17:01:08,074 - training - INFO - Epoch 16, Batch 460: loss: 11.906254  [29440/31588]
+2025-08-13 17:01:08,245 - training - INFO - Epoch 16, Batch 480: loss: 13.189918  [30720/31588]
+2025-08-13 17:01:08,448 - training - INFO - Epoch 16 Training Summary:
+2025-08-13 17:01:08,448 - training - INFO -   Average Loss: 12.368547
+2025-08-13 17:01:08,448 - training - INFO -   Accuracy: 0.9743
+2025-08-13 17:01:08,448 - training - INFO -   F1 (macro): 0.9742
+2025-08-13 17:01:08,448 - training - INFO -   Epoch Time: 6.69s
+2025-08-13 17:01:08,448 - training - INFO -   Average Batch Time: 0.0066s
+2025-08-13 17:01:08,448 - training - INFO -   Samples/second: 4718.5
+2025-08-13 17:01:10,049 - performance - INFO - Epoch 16 Validation Results:
+2025-08-13 17:01:10,050 - performance - INFO -   Average Loss: 12.621578
+2025-08-13 17:01:10,050 - performance - INFO -   Accuracy: 0.9586
+2025-08-13 17:01:10,050 - performance - INFO -   F1 (macro): 0.9588
+2025-08-13 17:01:10,050 - performance - INFO -   F1 (weighted): 0.9587
+2025-08-13 17:01:10,050 - performance - INFO -   Evaluation Time: 1.58s
+2025-08-13 17:01:10,050 - performance - INFO -   P-Phase - Precision: 0.9694, Recall: 0.9386, F1: 0.9538
+2025-08-13 17:01:10,050 - performance - INFO -   S-Phase - Precision: 0.9784, Recall: 0.9621, F1: 0.9702
+2025-08-13 17:01:10,050 - performance - INFO -   Noise - Precision: 0.9307, Recall: 0.9752, F1: 0.9525
+2025-08-13 17:01:10,050 - performance - INFO -   Confusion Matrix:
+[[2155   28  113]
+ [  30 2130   54]
+ [  38   19 2244]]
+2025-08-13 17:01:10,051 - training - INFO - Epoch 16 Complete:
+2025-08-13 17:01:10,051 - training - INFO -   Train Loss: 12.368547, Val Loss: 12.621578
+2025-08-13 17:01:10,051 - training - INFO -   Train Acc: 0.9743, Val Acc: 0.9586
+2025-08-13 17:01:10,051 - training - INFO -   Epoch Time: 8.33s
+2025-08-13 17:01:10,053 - performance - INFO - Post-epoch 16 system stats: {'cpu_percent': 65.8, 'memory_percent': 18.3, 'memory_used_gb': 174.0839500427246, 'memory_available_gb': 823.5000343322754, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.04232025146484375, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 3}
+2025-08-13 17:01:10,053 - training - INFO - EarlyStopping counter: 3 out of 5 (Epoch 16)
+2025-08-13 17:01:10,262 - training - INFO - Epoch 17, Batch 0: loss: 12.162772  [    0/31588]
+2025-08-13 17:01:10,263 - performance - INFO - Epoch 17, Batch 0 - System stats: {'cpu_percent': 70.0, 'memory_percent': 18.3, 'memory_used_gb': 174.5837516784668, 'memory_available_gb': 822.999210357666, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 5}
+2025-08-13 17:01:10,513 - training - INFO - Epoch 17, Batch 20: loss: 12.716676  [ 1280/31588]
+2025-08-13 17:01:10,736 - training - INFO - Epoch 17, Batch 40: loss: 12.149269  [ 2560/31588]
+2025-08-13 17:01:11,084 - training - INFO - Epoch 17, Batch 60: loss: 12.164980  [ 3840/31588]
+2025-08-13 17:01:11,303 - training - INFO - Epoch 17, Batch 80: loss: 12.303646  [ 5120/31588]
+2025-08-13 17:01:11,580 - training - INFO - Epoch 17, Batch 100: loss: 12.169592  [ 6400/31588]
+2025-08-13 17:01:11,582 - performance - INFO - Epoch 17, Batch 100 - System stats: {'cpu_percent': 70.2, 'memory_percent': 18.4, 'memory_used_gb': 175.86414337158203, 'memory_available_gb': 821.7200393676758, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 20}
+2025-08-13 17:01:11,801 - training - INFO - Epoch 17, Batch 120: loss: 12.407256  [ 7680/31588]
+2025-08-13 17:01:12,088 - training - INFO - Epoch 17, Batch 140: loss: 12.632946  [ 8960/31588]
+2025-08-13 17:01:12,355 - training - INFO - Epoch 17, Batch 160: loss: 12.448292  [10240/31588]
+2025-08-13 17:01:12,552 - training - INFO - Epoch 17, Batch 180: loss: 12.179439  [11520/31588]
+2025-08-13 17:01:12,843 - training - INFO - Epoch 17, Batch 200: loss: 12.386755  [12800/31588]
+2025-08-13 17:01:12,845 - performance - INFO - Epoch 17, Batch 200 - System stats: {'cpu_percent': 72.4, 'memory_percent': 18.5, 'memory_used_gb': 176.32801055908203, 'memory_available_gb': 821.2610664367676, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 17}
+2025-08-13 17:01:13,043 - training - INFO - Epoch 17, Batch 220: loss: 12.184012  [14080/31588]
+2025-08-13 17:01:13,341 - training - INFO - Epoch 17, Batch 240: loss: 11.872945  [15360/31588]
+2025-08-13 17:01:13,570 - training - INFO - Epoch 17, Batch 260: loss: 11.871340  [16640/31588]
+2025-08-13 17:01:13,842 - training - INFO - Epoch 17, Batch 280: loss: 12.577728  [17920/31588]
+2025-08-13 17:01:14,049 - training - INFO - Epoch 17, Batch 300: loss: 12.227267  [19200/31588]
+2025-08-13 17:01:14,052 - performance - INFO - Epoch 17, Batch 300 - System stats: {'cpu_percent': 70.1, 'memory_percent': 19.1, 'memory_used_gb': 182.359375, 'memory_available_gb': 815.2193336486816, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 19}
+2025-08-13 17:01:14,272 - training - INFO - Epoch 17, Batch 320: loss: 12.418513  [20480/31588]
+2025-08-13 17:01:14,561 - training - INFO - Epoch 17, Batch 340: loss: 13.199627  [21760/31588]
+2025-08-13 17:01:14,768 - training - INFO - Epoch 17, Batch 360: loss: 13.084107  [23040/31588]
+2025-08-13 17:01:15,010 - training - INFO - Epoch 17, Batch 380: loss: 12.840431  [24320/31588]
+2025-08-13 17:01:15,247 - training - INFO - Epoch 17, Batch 400: loss: 12.201009  [25600/31588]
+2025-08-13 17:01:15,248 - performance - INFO - Epoch 17, Batch 400 - System stats: {'cpu_percent': 64.3, 'memory_percent': 18.3, 'memory_used_gb': 174.41000366210938, 'memory_available_gb': 823.1793327331543, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 19}
+2025-08-13 17:01:15,479 - training - INFO - Epoch 17, Batch 420: loss: 12.857968  [26880/31588]
+2025-08-13 17:01:15,788 - training - INFO - Epoch 17, Batch 440: loss: 12.186586  [28160/31588]
+2025-08-13 17:01:16,011 - training - INFO - Epoch 17, Batch 460: loss: 12.337368  [29440/31588]
+2025-08-13 17:01:16,282 - training - INFO - Epoch 17, Batch 480: loss: 12.480941  [30720/31588]
+2025-08-13 17:01:16,424 - training - INFO - Epoch 17 Training Summary:
+2025-08-13 17:01:16,425 - training - INFO -   Average Loss: 12.355876
+2025-08-13 17:01:16,425 - training - INFO -   Accuracy: 0.9746
+2025-08-13 17:01:16,425 - training - INFO -   F1 (macro): 0.9746
+2025-08-13 17:01:16,425 - training - INFO -   Epoch Time: 6.33s
+2025-08-13 17:01:16,425 - training - INFO -   Average Batch Time: 0.0066s
+2025-08-13 17:01:16,425 - training - INFO -   Samples/second: 4986.4
+2025-08-13 17:01:18,114 - performance - INFO - Epoch 17 Validation Results:
+2025-08-13 17:01:18,114 - performance - INFO -   Average Loss: 12.645229
+2025-08-13 17:01:18,114 - performance - INFO -   Accuracy: 0.9567
+2025-08-13 17:01:18,114 - performance - INFO -   F1 (macro): 0.9567
+2025-08-13 17:01:18,115 - performance - INFO -   F1 (weighted): 0.9568
+2025-08-13 17:01:18,115 - performance - INFO -   Evaluation Time: 1.67s
+2025-08-13 17:01:18,115 - performance - INFO -   P-Phase - Precision: 0.9670, Recall: 0.9394, F1: 0.9530
+2025-08-13 17:01:18,115 - performance - INFO -   S-Phase - Precision: 0.9799, Recall: 0.9564, F1: 0.9680
+2025-08-13 17:01:18,115 - performance - INFO -   Noise - Precision: 0.9250, Recall: 0.9746, F1: 0.9491
+2025-08-13 17:01:18,115 - performance - INFO -   Confusion Matrix:
+[[2141   22  116]
+ [  39 2192   61]
+ [  34   23 2183]]
+2025-08-13 17:01:18,115 - training - INFO - Learning rate reduced from 1.00e-03 to 5.00e-04
+2025-08-13 17:01:18,115 - training - INFO - Epoch 17 Complete:
+2025-08-13 17:01:18,115 - training - INFO -   Train Loss: 12.355876, Val Loss: 12.645229
+2025-08-13 17:01:18,115 - training - INFO -   Train Acc: 0.9746, Val Acc: 0.9567
+2025-08-13 17:01:18,116 - training - INFO -   Epoch Time: 8.06s
+2025-08-13 17:01:18,117 - performance - INFO - Post-epoch 17 system stats: {'cpu_percent': 68.3, 'memory_percent': 18.8, 'memory_used_gb': 179.81668090820312, 'memory_available_gb': 817.7718391418457, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.04232025146484375, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 3}
+2025-08-13 17:01:18,117 - training - INFO - EarlyStopping counter: 4 out of 5 (Epoch 17)
+2025-08-13 17:01:18,339 - training - INFO - Epoch 18, Batch 0: loss: 13.123797  [    0/31588]
+2025-08-13 17:01:18,341 - performance - INFO - Epoch 18, Batch 0 - System stats: {'cpu_percent': 71.5, 'memory_percent': 18.9, 'memory_used_gb': 180.20409393310547, 'memory_available_gb': 817.3813896179199, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 1}
+2025-08-13 17:01:18,610 - training - INFO - Epoch 18, Batch 20: loss: 12.833259  [ 1280/31588]
+2025-08-13 17:01:18,882 - training - INFO - Epoch 18, Batch 40: loss: 11.834244  [ 2560/31588]
+2025-08-13 17:01:19,144 - training - INFO - Epoch 18, Batch 60: loss: 11.994370  [ 3840/31588]
+2025-08-13 17:01:19,506 - training - INFO - Epoch 18, Batch 80: loss: 12.168281  [ 5120/31588]
+2025-08-13 17:01:19,797 - training - INFO - Epoch 18, Batch 100: loss: 12.217819  [ 6400/31588]
+2025-08-13 17:01:19,798 - performance - INFO - Epoch 18, Batch 100 - System stats: {'cpu_percent': 69.3, 'memory_percent': 19.0, 'memory_used_gb': 181.32831573486328, 'memory_available_gb': 816.2599143981934, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 14}
+2025-08-13 17:01:20,100 - training - INFO - Epoch 18, Batch 120: loss: 12.538684  [ 7680/31588]
+2025-08-13 17:01:20,307 - training - INFO - Epoch 18, Batch 140: loss: 12.523527  [ 8960/31588]
+2025-08-13 17:01:20,601 - training - INFO - Epoch 18, Batch 160: loss: 12.550172  [10240/31588]
+2025-08-13 17:01:20,817 - training - INFO - Epoch 18, Batch 180: loss: 12.497801  [11520/31588]
+2025-08-13 17:01:21,032 - training - INFO - Epoch 18, Batch 200: loss: 12.597672  [12800/31588]
+2025-08-13 17:01:21,034 - performance - INFO - Epoch 18, Batch 200 - System stats: {'cpu_percent': 72.8, 'memory_percent': 19.2, 'memory_used_gb': 184.04540252685547, 'memory_available_gb': 813.5381927490234, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 18}
+2025-08-13 17:01:21,352 - training - INFO - Epoch 18, Batch 220: loss: 12.469378  [14080/31588]
+2025-08-13 17:01:21,556 - training - INFO - Epoch 18, Batch 240: loss: 12.174835  [15360/31588]
+2025-08-13 17:01:21,855 - training - INFO - Epoch 18, Batch 260: loss: 11.845530  [16640/31588]
+2025-08-13 17:01:22,080 - training - INFO - Epoch 18, Batch 280: loss: 11.982275  [17920/31588]
+2025-08-13 17:01:22,353 - training - INFO - Epoch 18, Batch 300: loss: 12.356055  [19200/31588]
+2025-08-13 17:01:22,355 - performance - INFO - Epoch 18, Batch 300 - System stats: {'cpu_percent': 72.3, 'memory_percent': 19.1, 'memory_used_gb': 182.26792526245117, 'memory_available_gb': 815.3175354003906, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 20}
+2025-08-13 17:01:22,559 - training - INFO - Epoch 18, Batch 320: loss: 12.865545  [20480/31588]
+2025-08-13 17:01:22,768 - training - INFO - Epoch 18, Batch 340: loss: 11.837421  [21760/31588]
+2025-08-13 17:01:23,061 - training - INFO - Epoch 18, Batch 360: loss: 11.866502  [23040/31588]
+2025-08-13 17:01:23,260 - training - INFO - Epoch 18, Batch 380: loss: 12.279380  [24320/31588]
+2025-08-13 17:01:23,531 - training - INFO - Epoch 18, Batch 400: loss: 12.167686  [25600/31588]
+2025-08-13 17:01:23,533 - performance - INFO - Epoch 18, Batch 400 - System stats: {'cpu_percent': 72.3, 'memory_percent': 19.1, 'memory_used_gb': 182.47753143310547, 'memory_available_gb': 815.1050834655762, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.042322635650634766, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 20}
+2025-08-13 17:01:23,741 - training - INFO - Epoch 18, Batch 420: loss: 12.849821  [26880/31588]
+2025-08-13 17:01:24,025 - training - INFO - Epoch 18, Batch 440: loss: 12.831994  [28160/31588]
+2025-08-13 17:01:24,204 - training - INFO - Epoch 18, Batch 460: loss: 12.475448  [29440/31588]
+2025-08-13 17:01:24,497 - training - INFO - Epoch 18, Batch 480: loss: 12.178025  [30720/31588]
+2025-08-13 17:01:24,690 - training - INFO - Epoch 18 Training Summary:
+2025-08-13 17:01:24,691 - training - INFO -   Average Loss: 12.376055
+2025-08-13 17:01:24,691 - training - INFO -   Accuracy: 0.9739
+2025-08-13 17:01:24,691 - training - INFO -   F1 (macro): 0.9739
+2025-08-13 17:01:24,691 - training - INFO -   Epoch Time: 6.54s
+2025-08-13 17:01:24,691 - training - INFO -   Average Batch Time: 0.0068s
+2025-08-13 17:01:24,691 - training - INFO -   Samples/second: 4832.8
+2025-08-13 17:01:26,290 - performance - INFO - Epoch 18 Validation Results:
+2025-08-13 17:01:26,290 - performance - INFO -   Average Loss: 12.612432
+2025-08-13 17:01:26,290 - performance - INFO -   Accuracy: 0.9590
+2025-08-13 17:01:26,290 - performance - INFO -   F1 (macro): 0.9590
+2025-08-13 17:01:26,290 - performance - INFO -   F1 (weighted): 0.9591
+2025-08-13 17:01:26,290 - performance - INFO -   Evaluation Time: 1.58s
+2025-08-13 17:01:26,290 - performance - INFO -   P-Phase - Precision: 0.9635, Recall: 0.9431, F1: 0.9532
+2025-08-13 17:01:26,290 - performance - INFO -   S-Phase - Precision: 0.9771, Recall: 0.9627, F1: 0.9699
+2025-08-13 17:01:26,290 - performance - INFO -   Noise - Precision: 0.9380, Recall: 0.9703, F1: 0.9539
+2025-08-13 17:01:26,291 - performance - INFO -   Confusion Matrix:
+[[2057   30   94]
+ [  31 2221   55]
+ [  47   22 2254]]
+2025-08-13 17:01:26,291 - training - INFO - Epoch 18 Complete:
+2025-08-13 17:01:26,291 - training - INFO -   Train Loss: 12.376055, Val Loss: 12.612432
+2025-08-13 17:01:26,291 - training - INFO -   Train Acc: 0.9739, Val Acc: 0.9590
+2025-08-13 17:01:26,291 - training - INFO -   Epoch Time: 8.17s
+2025-08-13 17:01:26,293 - performance - INFO - Post-epoch 18 system stats: {'cpu_percent': 68.7, 'memory_percent': 17.8, 'memory_used_gb': 169.8128204345703, 'memory_available_gb': 827.7727317810059, 'process_memory_mb': 1545.54296875, 'gpu_memory_allocated': 0.04232025146484375, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 5}
+2025-08-13 17:01:26,293 - training - INFO - EarlyStopping counter: 5 out of 5 (Epoch 18)
+2025-08-13 17:01:26,293 - training - INFO - Early stopping triggered. Saving final model to final_model.pth (Epoch 18)
+2025-08-13 17:01:26,322 - training - INFO - Early stopping triggered at epoch 18
+2025-08-13 17:01:26,322 - training - INFO - Training completed in 147.08 seconds
+2025-08-13 17:01:28,340 - debug - INFO - Loaded best model for final evaluation
+2025-08-13 17:01:28,340 - performance - INFO - Starting final evaluation on test set...
+2025-08-13 17:01:30,424 - performance - INFO - Epoch Final Test Final Test Results:
+2025-08-13 17:01:30,424 - performance - INFO -   Average Loss: 12.748933
+2025-08-13 17:01:30,424 - performance - INFO -   Accuracy: 0.9553
+2025-08-13 17:01:30,425 - performance - INFO -   F1 (macro): 0.9554
+2025-08-13 17:01:30,425 - performance - INFO -   F1 (weighted): 0.9554
+2025-08-13 17:01:30,425 - performance - INFO -   Evaluation Time: 2.07s
+2025-08-13 17:01:30,425 - performance - INFO -   P-Phase - Precision: 0.9615, Recall: 0.9372, F1: 0.9492
+2025-08-13 17:01:30,425 - performance - INFO -   S-Phase - Precision: 0.9830, Recall: 0.9544, F1: 0.9685
+2025-08-13 17:01:30,425 - performance - INFO -   Noise - Precision: 0.9245, Recall: 0.9735, F1: 0.9484
+2025-08-13 17:01:30,425 - performance - INFO -   Confusion Matrix:
+[[2120   22  120]
+ [  39 2200   66]
+ [  46   16 2277]]
+2025-08-13 17:01:30,865 - debug - INFO - Generating test sample visualization...
+2025-08-13 17:01:31,757 - __main__ - INFO - Detailed metrics saved to detailed_metrics.json
+2025-08-13 17:01:31,758 - performance - INFO - ==================================================
+2025-08-13 17:01:31,758 - performance - INFO - FINAL TRAINING SUMMARY
+2025-08-13 17:01:31,758 - performance - INFO - ==================================================
+2025-08-13 17:01:31,758 - performance - INFO - Initial Loss: 20.647670
+2025-08-13 17:01:31,758 - performance - INFO - Final Test Loss: 12.748933
+2025-08-13 17:01:31,758 - performance - INFO - Best Validation Loss: 12.577297
+2025-08-13 17:01:31,758 - performance - INFO - Final Test Accuracy: 0.9553
+2025-08-13 17:01:31,758 - performance - INFO - Final Test F1 (macro): 0.9554
+2025-08-13 17:01:31,758 - performance - INFO - Total Training Time: 147.08 seconds
+2025-08-13 17:01:31,758 - performance - INFO - Total Epochs: 18
+2025-08-13 17:01:31,758 - performance - INFO - ==================================================
+2025-08-13 17:01:31,759 - performance - INFO - Final system stats: {'cpu_percent': 63.0, 'memory_percent': 17.9, 'memory_used_gb': 170.95812606811523, 'memory_available_gb': 826.6282196044922, 'process_memory_mb': 1552.21875, 'gpu_memory_allocated': 0.04232025146484375, 'gpu_memory_cached': 0.107421875, 'gpu_utilization': 0}
