@@ -31,6 +31,10 @@ seisbench-demos/
 - **scripts/**: Python scripts for running SeisBench workflows programmatically (example: `01_basic_usage.py`).
 - **requirements.txt**: (optional) Python dependencies needed to run the tutorials.
 
+## OKALD Statistics
+
+![alt text](./figures/OKLAD_P_S_pick_statistics.png)
+
 ## Setup
 
 1. **Clone the repository:**
