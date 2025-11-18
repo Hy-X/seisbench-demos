@@ -32,7 +32,7 @@ seisbench-demos/
 │   └── Learn_00_StationCheck.ipynb
 └── scripts/
     ├── EQT_ModelTraining_256_0.01_SF0p1_Example/
-    └── PNET_ModelTraining_64_0.01_20Percent _Example/
+    └── PNET_ModelTraining_64_0.01_20Percent_Example/
 ```
 
 - **LICENSE**: Project license file.
