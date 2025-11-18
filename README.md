@@ -10,9 +10,18 @@
 [![Jupyter Notebook](https://img.shields.io/badge/Jupyter-Notebook-orange?logo=jupyter)](https://jupyter.org/)
 [![Stars](https://img.shields.io/github/stars/Hy-X/seisbench-demos?style=social)](https://github.com/Hy-X/seisbench-demos/stargazers)
 
-By Dr.Hongyu Xiao @ University of Oklahoma
+By Hongyu Xiao @ University of Oklahoma
 
-This repository provides a hands-on tutorial for **SeisBench**, a Python library for working with seismic datasets and machine learning models for seismology. It includes example scripts and Jupyter notebooks to get you started quickly.
+This repository provides a hands-on tutorial for **Seisbench**, a Python library for working with seismic dataset and machine learning models for seismology. It includes example scripts and Jupyter notebooks to get you started quickly.
+
+In addtion to the core Seisbench examples, this repository features the OKLAD induced-seismicity dataset. A curated collection of local microearthquake recordings with higher fidelity annotations from the Oklahoma region. The dataset captures a wide range of induced seismic events, making it ideal for demonstrating practical tasks such as waveform inspection, labelling strategies, preprocessing workflows and model fine-tuning.
+
+The notebooks inlucded in this repository will walk you through:
+
+1 loading and exploring the OKLAD dataset
+2 applying Seisbench's building preprocessing tools
+3 adapting pretrained models to the OKLAD data fro event detection for picking
+4 configuring the environment so others can easily reproduce or extend workflow
 
 ## Repository Structure
 
