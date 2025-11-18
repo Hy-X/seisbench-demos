@@ -1,4 +1,4 @@
-name: TL
+name: TL_hy
 channels:
   - conda-forge
   - defaults
@@ -234,4 +234,3 @@ dependencies:
       - webencodings==0.5.1
       - websocket-client==1.8.0
       - widgetsnbextension==4.0.11
-prefix: /home/hongyux/.conda/envs/TL
