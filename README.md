@@ -61,9 +61,9 @@ cd seisbench-demos
 
 ```bash
 # Create the environment (name it `seisbench-env` or choose your own)
-conda create -n seisbench-env python=3.12 -y
+conda create -n seisbench-oklad python=3.12 -y
 # Activate the environment
-conda activate seisbench-env
+conda activate seisbench-oklad
 ```
 
 After activating the Conda environment, install the project dependencies:
