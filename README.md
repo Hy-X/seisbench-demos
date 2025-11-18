@@ -40,7 +40,7 @@ seisbench-demos/
 - **scripts/**: Example training/run directories containing script artifacts and experiment folders.
 - **data/** and **figures/**: Example dataset and visualization assets used by the notebooks.
 
-## OKALD Statistics
+## OKALD Glipmse and Statistics
 
 ![Historical Seismicty](./figures/okla_historical_seismicity.png)
 
