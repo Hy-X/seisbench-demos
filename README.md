@@ -42,11 +42,26 @@ seisbench-demos/
 
 ## OKALD Glipmse and Statistics
 
-![Historical Seismicty](./figures/okla_historical_seismicity.png)
+![Historical Seismicty](./figures/Okla_historical_seismicity.png)
 
 ![Seismicty and Station Map](./figures/OK_Station_and_Event_Map_3.png)
 
 ![P and S pick statistics](./figures/OKLAD_P_S_pick_statistics.png)
+
+## OKALD Flexible Labeling
+
+![PhaseNet Label Example](./figures/Pnet_Training_example.png)
+
+![EQT Label Example](./figures/EQT_Training_Example.png)
+
+![GPD Label Example](./figures/GPD_Example.png)
+
+## OKALD Annotation
+
+![PhaseNet Annotation Example](./figures/PNet_Animation_9L_OK05.gif)
+
+![PhaseNet Annotation Example 2 ](./figures/PNet_Animation_GS_KAN05.gif)
+
 
 ## Setup
 
