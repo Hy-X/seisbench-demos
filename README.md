@@ -1,4 +1,3 @@
-![OKALD logo](./figures/OKLAD_logo.png)
 
 # OKLAD (Oklahoma labeled AI dataset) and SeisBench Tutorial
 
