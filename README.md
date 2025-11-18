@@ -33,7 +33,9 @@ seisbench-demos/
 
 ## OKALD Statistics
 
-![alt text](./figures/OKLAD_P_S_pick_statistics.png)
+![Historical Seismicty](./figures/okla_historical_seismicity.png)
+
+![P and S pick statistics](./figures/OKLAD_P_S_pick_statistics.png)
 
 ## Setup
 
