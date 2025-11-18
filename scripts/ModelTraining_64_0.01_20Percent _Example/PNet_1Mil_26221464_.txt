@@ -1,0 +1,14 @@
+Using device: cuda:0
+Loading data...
+Sampled dataset size: 1139808
+Train: OKLA_1Mil_120s_Ver_3 - 797268 traces
+Dev: OKLA_1Mil_120s_Ver_3 - 171351 traces
+Test: OKLA_1Mil_120s_Ver_3 - 171189 traces
+Total ground truth P peaks: 131807
+Total ground truth S peaks: 129236
+Total P-phase residuals under 0.6s: 117884
+Total S-phase residuals under 0.6s: 114275
+P-phase Residuals: Mean = -0.0009, Std = 0.9168
+Total detected P picks: 121378
+S-phase Residuals: Mean = 0.0003, Std = 0.6314
+Total detected S picks: 118237

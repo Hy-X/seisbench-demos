@@ -1,0 +1,26 @@
+{
+    "peak_detection": {
+        "sampling_rate": 100,
+        "height": 0.5,
+        "distance": 100
+    },
+    "training": {
+        "batch_size": 64,
+        "num_workers": 20,
+        "learning_rate": 0.01,
+        "epochs": 50,
+        "patience": 5,
+        "loss_weights": [0.01, 0.40, 0.59],
+        "optimization": {
+            "mixed_precision": true,
+            "gradient_accumulation_steps": 1,
+            "pin_memory": true,
+            "prefetch_factor": 2,
+            "persistent_workers": true
+        }
+    },
+    "device": {
+        "use_cuda": true,
+        "device_id": 0
+    }
+}
