@@ -54,7 +54,7 @@ seisbench-demos/
 
 ![EQT Label Example](./figures/EQT_Training_Example.png)
 
-![GPD Label Example](./figures/GPD_Example.png)
+![GPD Label Example](./figures/GPD_Training_Example.png)
 
 ## OKALD Annotation
 
