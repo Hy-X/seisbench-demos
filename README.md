@@ -21,15 +21,24 @@ seisbench-demos/
 │   └── 01_basic_dataset.hdf5
 ├── figures/
 ├── notebooks/
-│   └── 01_basic_usage.ipynb
+│   ├── 00_Intro_Env.ipynb
+│   ├── 01_Basic_Usage.ipynb
+│   ├── 02_Data_Preparation.ipynb
+│   ├── 02_OKLAD_StatsPlot_Ver_6.ipynb
+│   ├── 03_Model_Training.ipynb
+│   ├── 04_Model_Evaluation.ipynb
+│   ├── 05_Inference_Workflow.ipynb
+│   ├── 06_Advanced_Visualization.ipynb
+│   └── Learn_00_StationCheck.ipynb
 └── scripts/
-    └── 01_basic_usage.py
+    ├── EQT_ModelTraining_256_0.01_SF0p1_Example/
+    └── PNET_ModelTraining_64_0.01_20Percent _Example/
 ```
 
 - **LICENSE**: Project license file.
-- **notebooks/**: Jupyter notebooks demonstrating SeisBench usage interactively.
-- **scripts/**: Python scripts for running SeisBench workflows programmatically (example: `01_basic_usage.py`).
-- **requirements.txt**: (optional) Python dependencies needed to run the tutorials.
+- **notebooks/**: Jupyter notebooks demonstrating SeisBench usage interactively (multiple tutorial and utility notebooks).
+- **scripts/**: Example training/run directories containing script artifacts and experiment folders.
+- **data/** and **figures/**: Example dataset and visualization assets used by the notebooks.
 
 ## OKALD Statistics
 
