@@ -72,37 +72,22 @@ git clone https://github.com/Hy-X/seisbench-demos.git
 cd seisbench-demos
 ```
 
-2. **Create a Conda environment with Python 3.12 (recommended):**
+2. **Create the Conda environment from `environment.yml` (recommended):**
 
 ```bash
-# Create the environment (name it `seisbench-env` or choose your own)
-conda create -n seisbench-oklad python=3.12 -y
-# Activate the environment
+conda env create -f environment.yml
 conda activate seisbench-oklad
 ```
 
-After activating the Conda environment, install the project dependencies:
+This recreates the exact environment used for the tutorial, including Python, SeisBench, PyTorch, and all dependencies.
+
+3. **(Optional) Update the environment if new dependencies are added:**
 
 ```bash
-pip install -r requirements.txt
+conda env update -f environment.yml --prune
 ```
 
-If you plan to use GPU-accelerated PyTorch, prefer the Conda installation instructions from the PyTorch website (select the correct CUDA version), for example:
-
-```bash
-# Example (CPU-only):
-conda install pytorch cpuonly -c pytorch -y
-# Example (CUDA):
-# conda install pytorch cudatoolkit=12.1 -c pytorch -y
-```
-
-3. **Install dependencies:**
-
-```bash
-pip install -r requirements.txt
-```
-
-> Ensure you have `seisbench` and optionally `torch` installed. If you are using GPU, install the corresponding CUDA version for PyTorch.
+> GPU users: If you need a specific CUDA-enabled PyTorch version, follow the official PyTorch installation instructions and then update the environment accordingly.
 
 ## Usage
 
