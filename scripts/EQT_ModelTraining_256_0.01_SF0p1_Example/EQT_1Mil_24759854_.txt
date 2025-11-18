@@ -1,0 +1,16 @@
+The PostScript backend does not support transparency; partially transparent artists will be rendered opaque.
+The PostScript backend does not support transparency; partially transparent artists will be rendered opaque.
+The PostScript backend does not support transparency; partially transparent artists will be rendered opaque.
+The PostScript backend does not support transparency; partially transparent artists will be rendered opaque.
+Using device: cuda:0
+OKLA_1Mil_120s_Ver_3 - 797268 traces
+OKLA_1Mil_120s_Ver_3 - 171351 traces
+OKLA_1Mil_120s_Ver_3 - 171189 traces
+Total ground truth P peaks: 161423
+Total ground truth S peaks: 144565
+Total P-phase residuals under 0.6s: 137288
+Total S-phase residuals under 0.6s: 124917
+P-phase Residuals: Mean = -0.0401, Std = 2.3422
+Total detected P picks: 143867
+S-phase Residuals: Mean = 0.0452, Std = 1.6420
+Total detected S picks: 130635

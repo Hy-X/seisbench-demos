@@ -1,0 +1,3 @@
+Sampling Rate: 100 Hz
+Height: 0.5
+Distance: 100
