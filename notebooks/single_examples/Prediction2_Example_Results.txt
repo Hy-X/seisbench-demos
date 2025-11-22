@@ -1,0 +1,6 @@
+Ground Truth P arrival times: [15.97]
+Ground Truth S arrival times: [26.96]
+Predicted P arrival times: [15.89]
+Predicted S arrival times: [27.06]
+Residual P arrival times: [[-0.08]]
+Residual S arrival times: [[0.1]]
