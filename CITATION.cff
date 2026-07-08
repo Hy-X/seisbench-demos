@@ -52,29 +52,3 @@ preferred-citation:
   issue: 4
   start: "e2025JH001194"
   year: 2026
-references:
-  - type: data
-    title: "Oklahoma Labeled AI Dataset for Seismology"
-    doi: "10.5281/zenodo.18991761"
-    version: "1.0"
-    authors:
-      - family-names: "Xiao"
-        given-names: "Hongyu"
-        orcid: "https://orcid.org/0000-0001-5403-4650"
-      - family-names: "Walter"
-        given-names: "Jacob I."
-        orcid: "https://orcid.org/0000-0001-7127-9422"
-      - family-names: "Ogwari"
-        given-names: "Paul"
-      - family-names: "Thiel"
-        given-names: "Andrew D."
-      - family-names: "Gregg"
-        given-names: "Nicholas"
-      - family-names: "Mace"
-        given-names: "Brandon"
-      - family-names: "Woelfel"
-        given-names: "Isaac"
-    publisher:
-      name: "Zenodo"
-    year: 2026
-
