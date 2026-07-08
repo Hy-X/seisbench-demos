@@ -132,7 +132,7 @@ Contributions are welcome! Feel free to submit issues or pull requests for addit
 
 If you use this repository, the OKLAD dataset, or the trained models in your research, please cite both the paper and the dataset:
 
-### 1. Paper Citation
+### Paper Citation
 **APA Style:**
 > Xiao, H., Walter, J. I., Ogwari, P., Ho, L. M., Thiel, A. D., Gregg, N., Mace, B., & Woelfel, I. (2026). Transfer learning and benchmarking for induced seismic event detection: Insights from Oklahoma. *Journal of Geophysical Research: Machine Learning and Computation*, 3(4), e2025JH001194. https://doi.org/10.1029/2025JH001194
 
@@ -151,23 +151,6 @@ If you use this repository, the OKLAD dataset, or the trained models in your res
 }
 ```
 
-### 2. Dataset Citation
-**APA Style:**
-> Xiao, H., Walter, J., Ogwari, P., Thiel, A., Woelfel, I., Gregg, N., & Mace, B. (2026). Oklahoma Labeled AI Dataset for Seismology (1.0) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.18991761
-
-**BibTeX:**
-```bibtex
-@dataset{xiao2026oklad,
-  author = {Xiao, Hongyu and Walter, Jacob and Ogwari, Paul and Thiel, Andrew and Woelfel, Isaac and Gregg, Nicholas and Mace, Brandon},
-  title = {Oklahoma Labeled AI Dataset for Seismology},
-  month = jul,
-  year = 2026,
-  publisher = {Zenodo},
-  version = {1.0},
-  doi = {10.5281/zenodo.18991761},
-  url = {https://doi.org/10.5281/zenodo.18991761}
-}
-```
 
 ## License
 
