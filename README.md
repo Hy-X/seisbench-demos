@@ -10,6 +10,8 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://opensource.org/licenses/GPL-3.0)
 [![Jupyter Notebook](https://img.shields.io/badge/Jupyter-Notebook-orange?logo=jupyter)](https://jupyter.org/)
 [![Stars](https://img.shields.io/github/stars/Hy-X/seisbench-demos?style=social)](https://github.com/Hy-X/seisbench-demos/stargazers)
+[![DOI](https://img.shields.io/badge/DOI-10.1029%2F2025JH001194-blue.svg)](https://doi.org/10.1029/2025JH001194)
+
 
 By Hongyu Xiao @ University of Oklahoma
 
@@ -123,6 +125,28 @@ python scripts/01_basic_usage.py
 ## Contributing
 
 Contributions are welcome! Feel free to submit issues or pull requests for additional tutorials, datasets, or models.
+
+## Citation
+
+If you use this repository, the OKLAD dataset, or the trained models in your research, please cite:
+
+**APA Style:**
+> Xiao, H., Walter, J. I., Ogwari, P., Ho, L. M., Thiel, A. D., Gregg, N., Mace, B., & Woelfel, I. (2026). Transfer learning and benchmarking for induced seismic event detection: Insights from Oklahoma. *Journal of Geophysical Research: Machine Learning and Computation*, 3(4), e2025JH001194. https://doi.org/10.1029/2025JH001194
+
+**BibTeX:**
+```bibtex
+@article{xiao2026transfer,
+  author = {Xiao, Hongyu and Walter, Jacob I. and Ogwari, Paul and Ho, Long M. and Thiel, Andrew D. and Gregg, Nicholas and Mace, Brandon and Woelfel, Isaac},
+  title = {Transfer Learning and Benchmarking for Induced Seismic Event Detection: Insights From Oklahoma},
+  journal = {Journal of Geophysical Research: Machine Learning and Computation},
+  volume = {3},
+  number = {4},
+  pages = {e2025JH001194},
+  year = {2026},
+  doi = {10.1029/2025JH001194},
+  url = {https://doi.org/10.1029/2025JH001194}
+}
+```
 
 ## License
 
