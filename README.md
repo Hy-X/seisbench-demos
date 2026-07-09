@@ -135,7 +135,7 @@ If you use this repository, the OKLAD dataset, or the trained models in your res
 
 **BibTeX:**
 ```bibtex
-@article{xiao2026transfer,
+@article{xiao2026,
   author = {Xiao, Hongyu and Walter, Jacob I. and Ogwari, Paul and Ho, Long M. and Thiel, Andrew D. and Gregg, Nicholas and Mace, Brandon and Woelfel, Isaac},
   title = {Transfer Learning and Benchmarking for Induced Seismic Event Detection: Insights From Oklahoma},
   journal = {Journal of Geophysical Research: Machine Learning and Computation},
