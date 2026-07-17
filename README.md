@@ -26,6 +26,64 @@ The notebooks included in this repository will walk you through:
 3 adapting pretrained models to the OKLAD data for event detection and picking
 4 configuring the environment so others can easily reproduce or extend workflow
 
+## Published Paper
+
+**Transfer Learning and Benchmarking for Induced Seismic Event Detection: Insights From Oklahoma**
+
+*Journal of Geophysical Research: Machine Learning and Computation*, Vol. 3, Issue 4, e2025JH001194 (2026)
+
+📄 [Read the Paper](https://doi.org/10.1029/2025JH001194) | Published: July 6, 2026 (Online) | Open Access
+
+**Authors:** Hongyu Xiao, Jacob I. Walter, Paul Ogwari, Long M. Ho, Andrew D. Thiel, Nicholas Gregg, Brandon Mace, Isaac Woelfel
+*(Oklahoma Geological Survey, University of Oklahoma; The University of Alabama)*
+
+**Keywords:** microseismicity detection · transfer learning · induced seismicity · OKLAD (Oklahoma labeled AI dataset)
+
+### Abstract
+
+Machine learning models for microseismicity detection are often limited by the scarcity of large and high-quality labeled data sets in many regions. To address this need, we introduce the **Oklahoma Labeled AI Dataset (OKLAD)**, a manually curated data set compiled by the Oklahoma Geological Survey (OGS). OKLAD is designed to support studies of induced seismicity and serves as a benchmark for evaluating deep-learning detection models in local and regional monitoring contexts. Using OKLAD, we fine-tuned several established phase-picking models and observed substantial improvement in local and regional detection. The best performing model achieved recalls of **91.1% for first arrival P-wave detection** and **89.8% for first arrival S-wave detection**. Validating this model on continuous data in Oklahoma, we recovered **96.8% of the OGS-cataloged events** and identified **146.8% more events** after associative comparison with the events reported by routine network operations. Comparable improvements were also observed when applying the best performing models to other induced seismicity settings, such as west Texas. These results establish OKLAD as a benchmark data set for induced seismicity and demonstrate the effectiveness of transfer learning for improving regional seismic monitoring. This approach provides a replicable framework for enhancing microseismicity detection in challenging environments and can be extended to other regions where generalized deep-learning pickers may underperform.
+
+### Plain Language Summary
+
+Human activities such as wastewater injection and hydraulic fracking can trigger earthquakes. In the southern midcontinent of the U.S., such induced earthquakes have become more prominent in the last decade. However, the ground vibration signals of small induced earthquakes are often buried in environmental noise, making them difficult to detect using traditional methods or through visual inspection by seismic analysts. In this study, we fine-tuned machine learning models using an Oklahoma-focused data set (OKLAD) and compared their performance to existing models. Our results show that even with a relatively small amount of localized data, the models' ability to detect small earthquakes can be substantially improved. Applying the best model to 2022 data, we recovered nearly all previously cataloged events while **identifying more than 4,400 additional events**. These results show that OKLAD can serve as a benchmark for earthquake detection and that transfer learning is an effective strategy for applying machine learning across regions. We are releasing both our trained models and the data set to the public to support future research on induced earthquakes.
+
+### Key Results
+
+| Metric | Value |
+|--------|-------|
+| P-wave detection recall (best model) | **91.1%** |
+| S-wave detection recall (best model) | **89.8%** |
+| OGS catalog recovery rate (2022, continuous data) | **96.8%** |
+| Additional events identified beyond catalog | **+146.8%** (~4,400+ new events) |
+| Transferability to west Texas induced seismicity | ✅ Demonstrated |
+
+## OKLAD Dataset Overview
+
+OKLAD (**OK**lahoma **L**abeled **A**I **D**ataset) was curated from the Oklahoma Geological Survey earthquake catalog spanning **2010–2024**.
+
+| Property | Value |
+|----------|-------|
+| Total events | **52,193** |
+| Total waveform traces | **1,139,808** |
+| Seismic stations | **311** (temporary, long-term, and permanent) |
+| Coverage period | 2010–2024 |
+| Sampling rate | 100 Hz |
+| Trace length | 120 s (60 s before + 60 s after origin time) |
+| Coordinate system | ENZ (rotated) |
+| Networks covered | Oklahoma, Kansas, Missouri, Texas, Arkansas |
+
+**Phase pick statistics:**
+
+| Category | Count | % of Dataset |
+|----------|-------|--------------|
+| Total P Picks | 1,075,795 | 94.38% |
+| Total S Picks | 1,061,352 | 93.12% |
+| Both P & S Picks | 997,339 | 87.50% |
+| Only P Picks | 78,456 | 6.88% |
+| Only S Picks | 64,013 | 5.62% |
+
+> **Note:** Continuous waveform data are archived at the EarthScope SAGE Data Management Center (formerly IRIS). The dataset is regularly updated by the OGS.
+
 ## Repository Structure
 
 ```
@@ -151,4 +209,3 @@ If you use this repository, the OKLAD dataset, or the trained models in your res
 ## License
 
 This project is licensed under the GPL License.
-
